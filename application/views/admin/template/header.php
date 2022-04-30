@@ -20,6 +20,9 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 	<!-- CSS Files -->
 	<link id="pagestyle" href="<?php echo base_url('public/css/material-dashboard.css'); ?>" rel="stylesheet" />
+
+	<link href="<?php echo base_url('public/css/style.css'); ?>" rel="stylesheet" />
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -45,7 +48,7 @@
 				<li class="nav-item">
 					<a class="nav-link text-white <?php echo $this->uri->segment(2) == 'news' ? 'active bg-gradient-primary' : '' ?>" href="<?php echo base_url('admin/news'); ?>">
 						<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-							<i class="material-icons opacity-10">table_view</i>
+							<i class="material-icons opacity-10">newspaper</i>
 						</div>
 						<span class="nav-link-text ms-1">News</span>
 					</a>
@@ -56,25 +59,6 @@
 							<i class="material-icons opacity-10">people</i>
 						</div>
 						<span class="nav-link-text ms-1">Users</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link text-white " href="<?php echo base_url('admin/dashboard'); ?>">
-						<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-							<i class="material-icons opacity-10">notifications</i>
-						</div>
-						<span class="nav-link-text ms-1">Notifications</span>
-					</a>
-				</li>
-				<li class="nav-item mt-3">
-					<h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link text-white " href="<?php echo base_url('admin/dashboard'); ?>">
-						<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-							<i class="material-icons opacity-10">person</i>
-						</div>
-						<span class="nav-link-text ms-1">Profile</span>
 					</a>
 				</li>
 			</ul>
