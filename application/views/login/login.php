@@ -11,21 +11,22 @@
 
     <!-- CSS Files -->
     <link id="pagestyle" href="<?php echo base_url('public/css/material-dashboard.css'); ?>" rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <link href="<?php echo base_url('public/css/style.css'); ?>" rel="stylesheet" />
 
 <body>
     <div class="wrapper">
         <div class="logo"> <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> </div>
         <div class="text-center mt-4 name"> Twitter </div>
-        <form class="p-3 mt-3">
+        <form role="form" class="p-3 mt-3">
             <div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <input type="text" name="userName" id="userName" placeholder="Username">
+                <i class="material-icons">person</i>
+                <input type="text" class="form-control" name="userName" id="userName" placeholder="Username">
             </div>
             <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input type="password" name="password" id="pwd" placeholder="Password">
+                <i class="material-icons">key</i>
+                <input type="password" class="form-control" name="password" id="pwd" placeholder="Password">
+                
             </div>
             <button class="btn mt-3">Login</button>
         </form>
