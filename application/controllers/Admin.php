@@ -19,7 +19,7 @@ class Admin extends CI_Controller
 	public function dashboard()
 	{
 		$data = [
-			'title' => 'Admin || Dashboard'
+			'title' => 'Admin | Dashboard'
 		];
 
 		$this->load->view('admin/template/header', $data);
@@ -30,11 +30,55 @@ class Admin extends CI_Controller
 	public function news()
 	{
 		$data = [
-			'title' => 'Admin || News'
+			'title' => 'Admin | News'
 		];
 
 		$this->load->view('admin/template/header', $data);
 		$this->load->view('admin/view_news');
+		$this->load->view('admin/template/footer');
+	}
+
+	public function users()
+	{
+		$data = [
+			'title' => 'Admin | Users'
+		];
+
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/view_users');
+		$this->load->view('admin/template/footer');
+	}
+
+	public function lectures()
+	{
+		$data = [
+			'title' => 'Admin | Users'
+		];
+
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/view_lectures');
+		$this->load->view('admin/template/footer');
+	}
+
+	public function curiculum()
+	{
+		$data = [
+			'title' => 'Admin | Users'
+		];
+
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/view_curiculum');
+		$this->load->view('admin/template/footer');
+	}
+
+	public function events()
+	{
+		$data = [
+			'title' => 'Admin | Users'
+		];
+
+		$this->load->view('admin/template/header', $data);
+		$this->load->view('admin/view_events');
 		$this->load->view('admin/template/footer');
 	}
 }
