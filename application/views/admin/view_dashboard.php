@@ -1,5 +1,5 @@
 <div class="container-fluid py-4">
-	<div class="card z-index-2 ">
+	<div class="card z-index-2 mt-4">
 		<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
 			<div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
 				<div class="chart">
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row mt-4">
+	<div class="row mt-5">
 		<div class=" col-xl-4  col-sm-6 mb-xl-0 mb-4">
 			<div class="card">
 				<div class="card-header p-3 pt-2">
@@ -70,7 +70,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row mt-4">
+	<div class="row mt-5">
 		<div class="col-12">
 			<div class="card my-4">
 				<div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
