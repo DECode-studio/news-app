@@ -119,10 +119,37 @@
 								<i class="material-icons opacity-10 align-self-center">notifications</i>
 							</a>
 						</li>
-						<li class="nav-item d-flex align-items-center ms-4">
+						<!-- <li class="nav-item d-flex align-items-center ">
 							<a href="#" class="nav-link text-body font-weight-bold px-0 d-flex">
 								<i class="material-icons opacity-10 align-self-center">settings</i>
 							</a>
+						</li> -->
+						<li class="nav-item dropdown d-flex align-items-center ms-4">
+							<a href="javascript:;" class="nav-link text-body px-0 d-flex" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="material-icons opacity-10 align-self-center">settings</i>
+							</a>
+							<ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+								<li class="mb-2">
+								<a class="dropdown-item border-radius-md" href="javascript:;">
+									<div class="d-flex">
+										<i class="material-icons opacity-10 m-2">settings</i>
+										<h6 class="text-sm font-weight-normal m-2">
+										<span class="font-weight-bold">Settings</span>
+										</h6>
+									</div>
+								</a>
+								</li>
+								<li class="mb-2">
+								<a class="dropdown-item border-radius-md" href="javascript:;">
+									<div class="d-flex">
+										<i class="material-icons opacity-10 m-2">logout</i>
+										<h6 class="text-sm font-weight-normal m-2">
+										<span class="font-weight-bold">Logout</span>
+										</h6>
+									</div>
+								</a>
+								</li>
+							</ul>
 						</li>
 					</ul>
 				</div>
