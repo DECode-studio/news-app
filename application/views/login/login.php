@@ -29,11 +29,11 @@
             </div>
             <button class="btn mt-3">Login</button>
         </form>
-        <div class="text-center fs-6">
+        <!-- <div class="text-center fs-6">
             <a href="#">Forget password?</a>
             or
             <a href="#">Sign up</a>
-        </div>
+        </div> -->
     </div>
 </body>
 
