@@ -11,9 +11,9 @@ class Admin extends CI_Controller
 			'title' => 'Admin | Dashboard'
 		];
 
-		$this->load->view('admin/template/header', $data);
-		$this->load->view('admin/view_dashboard');
-		$this->load->view('admin/template/footer');
+		// $this->load->view('admin/template/header', $data);
+		$this->load->view('login/login');
+		// $this->load->view('admin/template/footer');
 	}
 
 	public function dashboard()
