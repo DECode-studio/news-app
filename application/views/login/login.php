@@ -13,7 +13,7 @@
     <link id="pagestyle" href="<?php echo base_url('public/css/material-dashboard.css'); ?>" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <link href="<?php echo base_url('public/css/style.css'); ?>" rel="stylesheet" />
-
+    <link href="<?php echo base_url('public/css/material-dashboard.css'); ?>" rel="stylesheet" />
 <body>
     <div class="wrapper">
         <div class="logo"> <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> </div>

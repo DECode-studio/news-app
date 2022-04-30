@@ -95,6 +95,13 @@ body {
     color: #EC407A ;
 }
 
+.news {
+    white-space: nowrap;
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @media(max-width: 380px) {
     .wrapper {
         margin: 30px 20px;
