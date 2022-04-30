@@ -104,7 +104,7 @@
 							<span class="mb-2 text-xs">Author:<span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span>
 							<span class="mb-2 text-xs">Date time: <span class="text-dark ms-sm-2 font-weight-bold">Senin, 05 November 2022</span></span>
 							<span class="mb-2 text-xs">News body: </span>
-							<div class="text-dark font-weight-bold text-sm" style="height: 135px;">
+							<div class="text-dark font-weight-bold text-sm">
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus unde velit porro rem facere, vitae in, id amet tempora non aperiam eveniet neque aspernatur libero dolorum omnis ipsa maiores ea.
 							</div>
 						</div>
