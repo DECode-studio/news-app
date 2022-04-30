@@ -99,7 +99,7 @@
 								<span class="visually-hidden">Next</span>
 							</button>
 						</div>
-						<div class="d-flex flex-column ps-3 pt-1 col-6">
+						<div class="ps-3 pt-1">
 							<h6 class="mb-3 text-sm">Oliver Liam</h6>
 							<span class="mb-2 text-xs">Author:<span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span>
 							<span class="mb-2 text-xs">Date time: <span class="text-dark ms-sm-2 font-weight-bold">Senin, 05 November 2022</span></span>
