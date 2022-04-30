@@ -8,11 +8,11 @@ class Admin extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title' => 'Admin | Dashboard'
+			'title' => 'Sign In | Portal'
 		];
 
 		// $this->load->view('admin/template/header', $data);
-		$this->load->view('login/login');
+		$this->load->view('login/login', $data);
 		// $this->load->view('admin/template/footer');
 	}
 
