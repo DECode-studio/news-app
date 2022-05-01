@@ -7,6 +7,7 @@ class Admin extends CI_Controller
 
 	public function index()
 	{
+
 		$data = [
 			'title' => 'Sign In | Portal'
 		];
@@ -14,6 +15,42 @@ class Admin extends CI_Controller
 		// $this->load->view('admin/template/header', $data);
 		$this->load->view('login/login', $data);
 		// $this->load->view('admin/template/footer');
+	}
+
+	public function logout()
+	{
+		$this->load->model('auth_model');
+		$this->auth_model->logout();
+		redirect(site_url());
+	}
+
+	public function login()
+	{
+
+		$data = [
+			'title' => 'Sign In | Portal'
+		];
+
+		$this->load->model('auth_model');
+		$this->load->library('form_validation');
+
+		$rules = $this->auth_model->rules();
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == FALSE) {
+			return $this->load->view('login/login', $data);
+		}
+
+		$username = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		if ($this->auth_model->login($username, $password)) {
+			redirect('dashboard');
+		} else {
+			$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
+		}
+
+		$this->load->view('login/login', $data);
 	}
 
 	public function dashboard()
