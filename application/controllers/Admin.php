@@ -45,6 +45,36 @@ class Admin extends CI_Controller
 		}
 	}
 
+	// public function login()
+	// {
+
+	// 	$data = [
+	// 		'title' => 'Sign In | Portal'
+	// 	];
+
+	// 	$this->load->model('auth_model');
+	// 	$this->load->library('form_validation');
+
+	// 	$rules = $this->auth_model->rules();
+	// 	$this->form_validation->set_rules($rules);
+
+	// 	if ($this->form_validation->run() == FALSE) {
+	// 		return $this->load->view('login/login', $data);
+	// 	} else {
+	// 		$this->dashboard();
+	// 	}
+
+	// 	$username = $this->input->post('txt_email');
+	// 	$password = $this->input->post('txt_password');
+
+	// 	if ($this->auth_model->login($username, $password)) {
+	// 		$this->dashboard();
+	// 	} else {
+	// 		$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
+	// 		$this->load->view('login/login', $data);
+	// 	}
+	// }
+
 	public function dashboard()
 	{
 		$data = [
