@@ -1,5 +1,7 @@
 <?php
 
+use function PHPUnit\Framework\isEmpty;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
@@ -26,9 +28,11 @@ class Admin extends CI_Controller
 
 	public function login()
 	{
+		$alert = '';
 
 		$data = [
-			'title' => 'Sign In | Portal'
+			'title' => 'Sign In | Portal',
+			'alert' => $alert
 		];
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
@@ -40,8 +44,6 @@ class Admin extends CI_Controller
 
 			$auth = $this->db->query("SELECT * FROM tbl_user");
 
-			$count = 0;
-
 			foreach ($auth->result_array() as $user_data) {
 				if ($user_data['user_email'] == $user_email && $user_data['user_password'] == $user_password) {
 					$_SESSION['user_id'] = $user_data['user_id'];
@@ -49,13 +51,13 @@ class Admin extends CI_Controller
 					$_SESSION['status'] = "login";
 					// $this->dashboard();
 					return redirect('admin/dashboard');
-				} else {
-					if ($count == count($user_data) - 1) {
-						return $this->load->view('login/login', $data);
-					}
 				}
+			}
 
-				$count++;
+			if (empty($user_email) && empty($user_password)) {
+				$alert = 'Email atau Password masih kosong !\nSilahkan isi Email atau Password';
+			} else {
+				$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
 			}
 
 			return $this->load->view('login/login', $data);

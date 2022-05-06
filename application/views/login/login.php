@@ -19,7 +19,7 @@
     <div class="wrapper">
         <div class="logo"> <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> </div>
         <div class="text-center mt-4 name"> Sign In </div>
-        <form role="form" action="<?php echo base_url('index.php/admin/login') ?>" method="post" class="p-3 mt-3">
+        <form role="form" action="<?php echo base_url('index.php/admin/login') ?>" method="post" onSubmit="return validasi()" class="p-3 mt-3">
             <div class="form-field d-flex align-items-center">
                 <i class="material-icons">person</i>
                 <input type="text" class="form-control" name="txt_email" id="txt_email" placeholder="Email">
@@ -31,6 +31,20 @@
             <input type="submit" class="btn mt-3" value="Login" />
         </form>
     </div>
+
+    <script type="text/javascript">
+        function validasi() {
+            var txt_email = document.getElementById("txt_email").value;
+            var txt_password = document.getElementById("txt_password").value;
+
+            if (txt_email === "" && txt_password === "") {
+                alert('Email atau Password masih kosong !\nSilahkan isi Email atau Password')
+            }
+            // else {
+            //     alert('Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar')
+            // }
+        }
+    </script>
 </body>
 
 </html>
