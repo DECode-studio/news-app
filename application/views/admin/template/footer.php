@@ -1,5 +1,6 @@
 </main>
 <!--   Core JS Files   -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
 <script src="<?php echo base_url('public/js/core/popper.min.js'); ?>"></script>
 <script src="<?php echo base_url('public/js/core/bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('public/js/plugins/perfect-scrollbar.min.js'); ?>"></script>

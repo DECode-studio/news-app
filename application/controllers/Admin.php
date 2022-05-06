@@ -18,10 +18,28 @@ class Admin extends CI_Controller
 		}
 	}
 
+	public function online($user_id)
+	{
+		$data = array('user_status' => 'online');
+
+		$this->db->where('user_id', $user_id);
+		$this->db->update('tbl_user', $data);
+	}
+
+	public function offline($user_id)
+	{
+		$data = array('user_status' => 'offline');
+
+		$this->db->where('user_id', $user_id);
+		$this->db->update('tbl_user', $data);
+	}
+
 	public function logout()
 	{
+		$user_id = $_SESSION['user_id'];
+		$this->offline($user_id);
+
 		if (session_destroy()) {
-			// $this->login();
 			redirect('admin/login');
 		}
 	}
@@ -45,6 +63,8 @@ class Admin extends CI_Controller
 				$_SESSION['user_id'] = $user_data['user_id'];
 				$_SESSION['user_email'] = $user_email;
 				$_SESSION['status'] = "login";
+
+				$this->online($user_data['user_id']);
 
 				// $this->dashboard();
 				return redirect('admin/dashboard');

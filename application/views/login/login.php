@@ -17,7 +17,7 @@
 
 <body>
     <div class="wrapper">
-        <div class="logo"> <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> </div>
+        <div class="logo"> <img src="https://firebasestorage.googleapis.com/v0/b/my-finance-bb1b3.appspot.com/o/images%2Flogo%2Fbuildup%20skill%2Flogo_buildup%20skill.png?alt=media&token=0b28655a-f10e-4c41-911e-058d2bfda708" alt=""> </div>
         <div class="text-center mt-4 name"> Sign In </div>
         <form role="form" action="<?php echo base_url('index.php/admin/login') ?>" method="post" onSubmit="return validasi()" class="p-3 mt-3">
             <div class="form-field d-flex align-items-center">
