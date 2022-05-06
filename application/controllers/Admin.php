@@ -4,7 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 {
-	// session_start();
 
 	public function index()
 	{
@@ -22,9 +21,10 @@ class Admin extends CI_Controller
 
 	public function logout()
 	{
-		$this->load->model('auth_model');
-		$this->auth_model->logout();
-		redirect(site_url());
+		// session_destroy();
+		if (session_destroy()) {
+			$this->login();
+		}
 	}
 
 	public function login()
@@ -57,14 +57,16 @@ class Admin extends CI_Controller
 
 	public function dashboard()
 	{
-		$data = [
-			'title' => 'Admin | Dashboard',
-			'auth' => $this->db->query("SELECT * FROM tbl_user")
-		];
 
 		if ($_SESSION['status'] != "login") {
 			$this->login();
 		} else {
+			$user_id = $_SESSION['user_id'];
+			$data = [
+				'title' => 'Admin | Dashboard',
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+			];
+
 			$this->load->view('admin/template/header', $data);
 			$this->load->view('admin/view_dashboard');
 			$this->load->view('admin/template/footer');
