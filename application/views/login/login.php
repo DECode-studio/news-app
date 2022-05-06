@@ -37,12 +37,11 @@
             var txt_email = document.getElementById("txt_email").value;
             var txt_password = document.getElementById("txt_password").value;
 
-            if (txt_email === "" && txt_password === "") {
-                alert('Email atau Password masih kosong !\nSilahkan isi Email atau Password')
-            }
-            // else {
-            //     alert('Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar')
-            // }
+            // var alerData = 
+
+            <?php if ($alert != "") { ?>
+                alert("<?= $alert ?>")
+            <?php } ?>
         }
     </script>
 </body>

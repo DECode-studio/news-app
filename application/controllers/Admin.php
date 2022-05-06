@@ -30,11 +30,6 @@ class Admin extends CI_Controller
 	{
 		$alert = '';
 
-		$data = [
-			'title' => 'Sign In | Portal',
-			'alert' => $alert
-		];
-
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 			// $this->dashboard();
 			redirect('admin/dashboard');
@@ -55,10 +50,13 @@ class Admin extends CI_Controller
 			}
 
 			if (empty($user_email) && empty($user_password)) {
-				$alert = 'Email atau Password masih kosong !\nSilahkan isi Email atau Password';
-			} else {
 				$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
 			}
+
+			$data = [
+				'title' => 'Sign In | Portal',
+				'alert' => $alert
+			];
 
 			return $this->load->view('login/login', $data);
 		}
