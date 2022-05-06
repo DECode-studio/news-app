@@ -40,17 +40,25 @@ class Admin extends CI_Controller
 
 			$auth = $this->db->query("SELECT * FROM tbl_user");
 
+			$count = 0;
+
 			foreach ($auth->result_array() as $user_data) {
 				if ($user_data['user_email'] == $user_email && $user_data['user_password'] == $user_password) {
 					$_SESSION['user_id'] = $user_data['user_id'];
 					$_SESSION['user_email'] = $user_email;
 					$_SESSION['status'] = "login";
 					// $this->dashboard();
-					redirect('admin/dashboard');
+					return redirect('admin/dashboard');
 				} else {
-					return $this->load->view('login/login', $data);
+					if ($count == count($user_data) - 1) {
+						return $this->load->view('login/login', $data);
+					}
 				}
+
+				$count++;
 			}
+
+			return $this->load->view('login/login', $data);
 		}
 	}
 
