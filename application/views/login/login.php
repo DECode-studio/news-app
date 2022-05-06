@@ -37,11 +37,13 @@
             var txt_email = document.getElementById("txt_email").value;
             var txt_password = document.getElementById("txt_password").value;
 
-            // var alerData = 
+            var alerData = <?php $counter ?>
 
             <?php if ($alert != "") { ?>
                 alert("<?= $alert ?>")
             <?php } ?>
+
+            console.log(<?php $counter ?>);
         }
     </script>
 </body>

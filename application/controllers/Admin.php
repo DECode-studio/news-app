@@ -30,6 +30,8 @@ class Admin extends CI_Controller
 	{
 		$alert = '';
 
+		$counter = 1;
+
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 			// $this->dashboard();
 			redirect('admin/dashboard');
@@ -37,25 +39,35 @@ class Admin extends CI_Controller
 			$user_email = $this->input->post('txt_email');
 			$user_password = $this->input->post('txt_password');
 
-			$auth = $this->db->query("SELECT * FROM tbl_user");
+			$auth = $this->db->query("SELECT * FROM tbl_user where user_email='$user_email' and user_password='$user_password'");
 
 			foreach ($auth->result_array() as $user_data) {
-				if ($user_data['user_email'] == $user_email && $user_data['user_password'] == $user_password) {
-					$_SESSION['user_id'] = $user_data['user_id'];
-					$_SESSION['user_email'] = $user_email;
-					$_SESSION['status'] = "login";
-					// $this->dashboard();
-					return redirect('admin/dashboard');
-				}
+				$_SESSION['user_id'] = $user_data['user_id'];
+				$_SESSION['user_email'] = $user_email;
+				$_SESSION['status'] = "login";
+
+				// $this->dashboard();
+				return redirect('admin/dashboard');
 			}
 
-			if (empty($user_email) && empty($user_password)) {
+			$user_data = $auth->result_array();
+
+			if ($user_data == null) {
 				$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
 			}
 
+			$counter = $user_data;
+
+			// if (empty($user_email) && empty($user_password)) {
+			// 	$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
+			// }
+
+			// $alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
+
 			$data = [
 				'title' => 'Sign In | Portal',
-				'alert' => $alert
+				'alert' => $alert,
+				'counter' => $counter
 			];
 
 			return $this->load->view('login/login', $data);
@@ -70,7 +82,8 @@ class Admin extends CI_Controller
 
 			$data = [
 				'title' => 'Admin | Dashboard',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+				'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
 			];
 
 			$this->load->view('admin/template/header', $data);
@@ -112,7 +125,8 @@ class Admin extends CI_Controller
 
 			$data = [
 				'title' => 'Admin | Users',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+				'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
 			];
 
 			$this->load->view('admin/template/header', $data);

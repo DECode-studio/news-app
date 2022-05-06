@@ -115,7 +115,7 @@
 									<?php
 									foreach ($auth->result_array() as $auth_data) {
 										echo $auth_data['user_name'];
-									};
+									}
 									?>
 								</div>
 								<!-- <div class="d-sm-inline d-none align-self-center ms-2">Profile</div> -->
