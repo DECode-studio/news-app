@@ -7,23 +7,20 @@ class Admin extends CI_Controller
 
 	public function index()
 	{
-
-		$data = [
-			'title' => 'Sign In | Portal'
-		];
-
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
-			$this->dashboard();
+			// $this->dashboard();
+			redirect('admin/dashboard');
 		} else {
-			$this->load->view('login/login', $data);
+			// $this->login();
+			redirect('admin/login');
 		}
 	}
 
 	public function logout()
 	{
-		// session_destroy();
 		if (session_destroy()) {
-			$this->login();
+			// $this->login();
+			redirect('admin/login');
 		}
 	}
 
@@ -35,7 +32,8 @@ class Admin extends CI_Controller
 		];
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
-			$this->dashboard();
+			// $this->dashboard();
+			redirect('admin/dashboard');
 		} else {
 			$user_email = $this->input->post('txt_email');
 			$user_password = $this->input->post('txt_password');
@@ -47,7 +45,8 @@ class Admin extends CI_Controller
 					$_SESSION['user_id'] = $user_data['user_id'];
 					$_SESSION['user_email'] = $user_email;
 					$_SESSION['status'] = "login";
-					$this->dashboard();
+					// $this->dashboard();
+					redirect('admin/dashboard');
 				} else {
 					return $this->load->view('login/login', $data);
 				}
@@ -58,10 +57,9 @@ class Admin extends CI_Controller
 	public function dashboard()
 	{
 
-		if ($_SESSION['status'] != "login") {
-			$this->login();
-		} else {
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 			$user_id = $_SESSION['user_id'];
+
 			$data = [
 				'title' => 'Admin | Dashboard',
 				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
@@ -70,66 +68,115 @@ class Admin extends CI_Controller
 			$this->load->view('admin/template/header', $data);
 			$this->load->view('admin/view_dashboard');
 			$this->load->view('admin/template/footer');
+		} else {
+
+			// $this->login();
+			redirect('admin/login');
 		}
 	}
 
 	public function news()
 	{
-		$data = [
-			'title' => 'Admin | News',
-			'auth' => $this->db->query("SELECT * FROM tbl_user")
-		];
 
-		$this->load->view('admin/template/header', $data);
-		$this->load->view('admin/view_news');
-		$this->load->view('admin/template/footer');
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+			$user_id = $_SESSION['user_id'];
+
+			$data = [
+				'title' => 'Admin | Articles',
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+			];
+
+			$this->load->view('admin/template/header', $data);
+			$this->load->view('admin/view_news');
+			$this->load->view('admin/template/footer');
+		} else {
+
+			// $this->login();
+			redirect('admin/login');
+		}
 	}
 
 	public function users()
 	{
-		$data = [
-			'title' => 'Admin | Users',
-			'auth' => $this->db->query("SELECT * FROM tbl_user")
-		];
 
-		$this->load->view('admin/template/header', $data);
-		$this->load->view('admin/view_users');
-		$this->load->view('admin/template/footer');
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+			$user_id = $_SESSION['user_id'];
+
+			$data = [
+				'title' => 'Admin | Users',
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+			];
+
+			$this->load->view('admin/template/header', $data);
+			$this->load->view('admin/view_users');
+			$this->load->view('admin/template/footer');
+		} else {
+
+			// $this->login();
+			redirect('admin/login');
+		}
 	}
 
 	public function lectures()
 	{
-		$data = [
-			'title' => 'Admin | Users',
-			'auth' => $this->db->query("SELECT * FROM tbl_user")
-		];
 
-		$this->load->view('admin/template/header', $data);
-		$this->load->view('admin/view_lectures');
-		$this->load->view('admin/template/footer');
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+			$user_id = $_SESSION['user_id'];
+
+			$data = [
+				'title' => 'Admin | Lectures',
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+			];
+
+			$this->load->view('admin/template/header', $data);
+			$this->load->view('admin/view_lectures');
+			$this->load->view('admin/template/footer');
+		} else {
+
+			// $this->login();
+			redirect('admin/login');
+		}
 	}
 
 	public function curiculum()
 	{
-		$data = [
-			'title' => 'Admin | Users',
-			'auth' => $this->db->query("SELECT * FROM tbl_user")
-		];
 
-		$this->load->view('admin/template/header', $data);
-		$this->load->view('admin/view_curiculum');
-		$this->load->view('admin/template/footer');
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+			$user_id = $_SESSION['user_id'];
+
+			$data = [
+				'title' => 'Admin | Curiculum',
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+			];
+
+			$this->load->view('admin/template/header', $data);
+			$this->load->view('admin/view_curiculum');
+			$this->load->view('admin/template/footer');
+		} else {
+
+			// $this->login();
+			redirect('admin/login');
+		}
 	}
 
 	public function events()
 	{
-		$data = [
-			'title' => 'Admin | Users',
-			'auth' => $this->db->query("SELECT * FROM tbl_user")
-		];
 
-		$this->load->view('admin/template/header', $data);
-		$this->load->view('admin/view_events');
-		$this->load->view('admin/template/footer');
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+			$user_id = $_SESSION['user_id'];
+
+			$data = [
+				'title' => 'Admin | Events',
+				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+			];
+
+			$this->load->view('admin/template/header', $data);
+			$this->load->view('admin/view_events');
+			$this->load->view('admin/template/footer');
+		} else {
+
+			// $this->login();
+			redirect('admin/login');
+		}
 	}
 }
