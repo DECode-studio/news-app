@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 {
+	// session_start();
 
 	public function index()
 	{
@@ -12,9 +13,11 @@ class Admin extends CI_Controller
 			'title' => 'Sign In | Portal'
 		];
 
-		// $this->load->view('admin/template/header', $data);
-		$this->load->view('login/login', $data);
-		// $this->load->view('admin/template/footer');
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+			$this->dashboard();
+		} else {
+			$this->load->view('login/login', $data);
+		}
 	}
 
 	public function logout()
@@ -31,49 +34,26 @@ class Admin extends CI_Controller
 			'title' => 'Sign In | Portal'
 		];
 
-		$user_email = $this->input->post('txt_email');
-		$user_password = $this->input->post('txt_password');
+		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+			$this->dashboard();
+		} else {
+			$user_email = $this->input->post('txt_email');
+			$user_password = $this->input->post('txt_password');
 
-		$auth = $this->db->query("SELECT * FROM tbl_user");
+			$auth = $this->db->query("SELECT * FROM tbl_user");
 
-		foreach ($auth->result_array() as $user_data) {
-			if ($user_data['user_email'] == $user_email && $user_data['user_password'] == $user_password) {
-				$this->dashboard();
-			} else {
-				return $this->load->view('login/login', $data);
+			foreach ($auth->result_array() as $user_data) {
+				if ($user_data['user_email'] == $user_email && $user_data['user_password'] == $user_password) {
+					$_SESSION['user_id'] = $user_data['user_id'];
+					$_SESSION['user_email'] = $user_email;
+					$_SESSION['status'] = "login";
+					$this->dashboard();
+				} else {
+					return $this->load->view('login/login', $data);
+				}
 			}
 		}
 	}
-
-	// public function login()
-	// {
-
-	// 	$data = [
-	// 		'title' => 'Sign In | Portal'
-	// 	];
-
-	// 	$this->load->model('auth_model');
-	// 	$this->load->library('form_validation');
-
-	// 	$rules = $this->auth_model->rules();
-	// 	$this->form_validation->set_rules($rules);
-
-	// 	if ($this->form_validation->run() == FALSE) {
-	// 		return $this->load->view('login/login', $data);
-	// 	} else {
-	// 		$this->dashboard();
-	// 	}
-
-	// 	$username = $this->input->post('txt_email');
-	// 	$password = $this->input->post('txt_password');
-
-	// 	if ($this->auth_model->login($username, $password)) {
-	// 		$this->dashboard();
-	// 	} else {
-	// 		$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
-	// 		$this->load->view('login/login', $data);
-	// 	}
-	// }
 
 	public function dashboard()
 	{
@@ -82,15 +62,20 @@ class Admin extends CI_Controller
 			'auth' => $this->db->query("SELECT * FROM tbl_user")
 		];
 
-		$this->load->view('admin/template/header', $data);
-		$this->load->view('admin/view_dashboard');
-		$this->load->view('admin/template/footer');
+		if ($_SESSION['status'] != "login") {
+			$this->login();
+		} else {
+			$this->load->view('admin/template/header', $data);
+			$this->load->view('admin/view_dashboard');
+			$this->load->view('admin/template/footer');
+		}
 	}
 
 	public function news()
 	{
 		$data = [
-			'title' => 'Admin | News'
+			'title' => 'Admin | News',
+			'auth' => $this->db->query("SELECT * FROM tbl_user")
 		];
 
 		$this->load->view('admin/template/header', $data);
@@ -101,7 +86,8 @@ class Admin extends CI_Controller
 	public function users()
 	{
 		$data = [
-			'title' => 'Admin | Users'
+			'title' => 'Admin | Users',
+			'auth' => $this->db->query("SELECT * FROM tbl_user")
 		];
 
 		$this->load->view('admin/template/header', $data);
@@ -112,7 +98,8 @@ class Admin extends CI_Controller
 	public function lectures()
 	{
 		$data = [
-			'title' => 'Admin | Users'
+			'title' => 'Admin | Users',
+			'auth' => $this->db->query("SELECT * FROM tbl_user")
 		];
 
 		$this->load->view('admin/template/header', $data);
@@ -123,7 +110,8 @@ class Admin extends CI_Controller
 	public function curiculum()
 	{
 		$data = [
-			'title' => 'Admin | Users'
+			'title' => 'Admin | Users',
+			'auth' => $this->db->query("SELECT * FROM tbl_user")
 		];
 
 		$this->load->view('admin/template/header', $data);
@@ -134,7 +122,8 @@ class Admin extends CI_Controller
 	public function events()
 	{
 		$data = [
-			'title' => 'Admin | Users'
+			'title' => 'Admin | Users',
+			'auth' => $this->db->query("SELECT * FROM tbl_user")
 		];
 
 		$this->load->view('admin/template/header', $data);
