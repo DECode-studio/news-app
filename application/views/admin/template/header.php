@@ -111,7 +111,14 @@
 						<li class="nav-item d-flex align-items-center">
 							<a href="#" class="nav-link text-body font-weight-bold px-0 d-flex">
 								<i class="material-icons opacity-10 align-self-center">person</i>
-								<div class="d-sm-inline d-none align-self-center ms-2">Profile</div>
+								<div class="d-sm-inline d-none align-self-center ms-2">
+									<?php
+									foreach ($auth->result_array() as $auth_data) {
+										echo $auth_data['user_name'];
+									};
+									?>
+								</div>
+								<!-- <div class="d-sm-inline d-none align-self-center ms-2">Profile</div> -->
 							</a>
 						</li>
 						<li class="nav-item d-flex align-items-center ms-4">
@@ -130,24 +137,24 @@
 							</a>
 							<ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
 								<li class="mb-2">
-								<a class="dropdown-item border-radius-md" href="javascript:;">
-									<div class="d-flex">
-										<i class="material-icons opacity-10 m-2">settings</i>
-										<h6 class="text-sm font-weight-normal m-2">
-										<span class="font-weight-bold">Settings</span>
-										</h6>
-									</div>
-								</a>
+									<a class="dropdown-item border-radius-md" href="javascript:;">
+										<div class="d-flex">
+											<i class="material-icons opacity-10 m-2">settings</i>
+											<h6 class="text-sm font-weight-normal m-2">
+												<span class="font-weight-bold">Settings</span>
+											</h6>
+										</div>
+									</a>
 								</li>
 								<li class="mb-2">
-								<a class="dropdown-item border-radius-md" href="<?php echo base_url(''); ?>">
-									<div class="d-flex">
-										<i class="material-icons opacity-10 m-2">logout</i>
-										<h6 class="text-sm font-weight-normal m-2">
-										<span class="font-weight-bold">Logout</span>
-										</h6>
-									</div>
-								</a>
+									<a class="dropdown-item border-radius-md" href="<?php echo base_url(''); ?>">
+										<div class="d-flex">
+											<i class="material-icons opacity-10 m-2">logout</i>
+											<h6 class="text-sm font-weight-normal m-2">
+												<span class="font-weight-bold">Logout</span>
+											</h6>
+										</div>
+									</a>
 								</li>
 							</ul>
 						</li>

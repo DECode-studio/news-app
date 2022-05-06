@@ -2,7 +2,7 @@
 
 class Auth_model extends CI_Model
 {
-    private $_table = "user_id";
+    private $_table = "tbl_user";
     const SESSION_KEY = 'user_id';
 
     public function rules()

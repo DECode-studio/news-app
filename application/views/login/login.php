@@ -19,17 +19,16 @@
     <div class="wrapper">
         <div class="logo"> <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt=""> </div>
         <div class="text-center mt-4 name"> Sign In </div>
-        <form role="form" action="" method="post" class="p-3 mt-3">
+        <form role="form" action="<?php echo base_url('index.php/admin/login') ?>" method="post" class="p-3 mt-3">
             <div class="form-field d-flex align-items-center">
                 <i class="material-icons">person</i>
-                <input type="text" class="form-control" name="email" id="userName" placeholder="Username">
+                <input type="text" class="form-control" name="txt_email" id="txt_email" placeholder="Email">
             </div>
             <div class="form-field d-flex align-items-center">
                 <i class="material-icons">key</i>
-                <input type="password" class="form-control" name="password" id="pwd" placeholder="Password">
-
+                <input type="password" class="form-control" name="txt_password" id="txt_password" placeholder="Password">
             </div>
-            <button class="btn mt-3" value="Login">Login</button>
+            <input type="submit" class="btn mt-3" value="Login" />
         </form>
         <!-- <div class="text-center fs-6">
             <a href="#">Forget password?</a>

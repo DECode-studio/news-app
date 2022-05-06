@@ -31,32 +31,25 @@ class Admin extends CI_Controller
 			'title' => 'Sign In | Portal'
 		];
 
-		$this->load->model('auth_model');
-		$this->load->library('form_validation');
+		$user_email = $this->input->post('txt_email');
+		$user_password = $this->input->post('txt_password');
 
-		$rules = $this->auth_model->rules();
-		$this->form_validation->set_rules($rules);
+		$auth = $this->db->query("SELECT * FROM tbl_user");
 
-		if ($this->form_validation->run() == FALSE) {
-			return $this->load->view('login/login', $data);
+		foreach ($auth->result_array() as $user_data) {
+			if ($user_data['user_email'] == $user_email && $user_data['user_password'] == $user_password) {
+				$this->dashboard();
+			} else {
+				return $this->load->view('login/login', $data);
+			}
 		}
-
-		$username = $this->input->post('email');
-		$password = $this->input->post('password');
-
-		if ($this->auth_model->login($username, $password)) {
-			redirect('dashboard');
-		} else {
-			$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
-		}
-
-		$this->load->view('login/login', $data);
 	}
 
 	public function dashboard()
 	{
 		$data = [
-			'title' => 'Admin | Dashboard'
+			'title' => 'Admin | Dashboard',
+			'auth' => $this->db->query("SELECT * FROM tbl_user")
 		];
 
 		$this->load->view('admin/template/header', $data);
