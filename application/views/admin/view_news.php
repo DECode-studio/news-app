@@ -153,9 +153,9 @@
       </div>
       <div class="modal-body">
         <form>
-		<div class="mb-3">
-			<label for="gambar_pamflet" class="form-label">Gambar Pamflet</label>
-			<input type="file" class="form-control" id="gambar_pamflet">
+		<div class="mb-3" style="border: 2px;">
+			<label for="gambar_pamflet" class="form-label">Gambar Pamflet</label><br>
+			<input type="file" class="custom-file-input" id="gambar_pamflet">
 		</div>
 		<div class="mb-3">
 			<label for="exampleFormControlInput1" class="form-label">Title</label>
