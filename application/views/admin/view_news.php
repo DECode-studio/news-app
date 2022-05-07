@@ -153,17 +153,18 @@
       </div>
       <div class="modal-body">
         <form method='post' action="#" enctype='multipart/form-data'>
-		<div class="mb-3" style="border: 2px;">
-			<label for="gambar_pamflet" class="form-label">Gambar Pamflet</label><br>
+		<div class="input-group">
 			<input type="file" name="files[]" class="file" multiple />
 		</div>
-		<div class="mb-3">
+		<br>
+		<div class="input-group input-group-outline">
 			<label for="exampleFormControlInput1" class="form-label">Title</label>
-			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Judul Artikel..">
+			<input type="text" class="form-control" id="exampleFormControlInput1" >
 		</div>
-		<div class="mb-3">
-			<label for="exampleFormControlTextarea1" class="form-label">Content</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Isi Artikel.."></textarea>
+		<br>
+		<div class="input-group input-group-outline">
+			<label for="content" class="form-label">Content</label>
+			<textarea type="text" class="form-control" id="content" rows="5"></textarea>
 		</div>
         </form>
       </div>
