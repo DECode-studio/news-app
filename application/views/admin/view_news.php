@@ -163,8 +163,7 @@
 		</div>
 		<br>
 		<div class="input-group input-group-outline">
-			<label for="content" class="form-label">Content</label>
-			<textarea type="text" class="form-control" id="content" rows="5"></textarea>
+			<textarea type="text" class="form-control" id="content" rows="5" placeholder="Content.."></textarea>
 		</div>
         </form>
       </div>
