@@ -152,10 +152,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method='post' action="#" enctype='multipart/form-data'>
 		<div class="mb-3" style="border: 2px;">
 			<label for="gambar_pamflet" class="form-label">Gambar Pamflet</label><br>
-			<input type="file" class="custom-file-input" id="gambar_pamflet">
+			<input type="file" name="files[]" class="file" multiple />
 		</div>
 		<div class="mb-3">
 			<label for="exampleFormControlInput1" class="form-label">Title</label>
@@ -169,7 +169,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Publikasi</button>
+        <button type="button" name="submit" class="btn btn-primary">Posting</button>
       </div>
     </div>
   </div>
