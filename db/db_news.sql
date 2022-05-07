@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Bulan Mei 2022 pada 09.33
+-- Waktu pembuatan: 07 Bulan Mei 2022 pada 05.16
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.4.16
 
@@ -123,6 +123,7 @@ CREATE TABLE `tbl_user` (
   `user_name` varchar(255) DEFAULT NULL,
   `user_email` varchar(255) DEFAULT NULL,
   `user_category` varchar(255) DEFAULT NULL,
+  `user_status` varchar(255) DEFAULT NULL,
   `user_password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -130,8 +131,9 @@ CREATE TABLE `tbl_user` (
 -- Dumping data untuk tabel `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_email`, `user_category`, `user_password`) VALUES
-('N91qRm2it3hlLPNhvoYT0aIKfzx1', 'The Tormentor', 'tormentor@gmail.com', 'admin', 'kuplay123');
+INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_email`, `user_category`, `user_status`, `user_password`) VALUES
+('User.ID_001', 'The Tormentor', 'tormentor@gmail.com', 'admin', 'online', 'kuplay123'),
+('User.ID_002', 'Nur Wahid Azhar', 'wahid.azhar.45@gmail.com', 'admin', 'offline', 'kuplay123');
 
 --
 -- Indexes for dumped tables
