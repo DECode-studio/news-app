@@ -87,6 +87,16 @@
 			},
 		},
 	});
+
+	$.ajax({
+		url: "<?php echo base_url('admin/logout'); ?>",
+		method: 'POST',
+		contentType: false,
+		processData: false,
+		success: function(data) {
+			alert("session destroyed");
+		}
+	});
 </script>
 <script>
 	var win = navigator.platform.indexOf('Win') > -1;

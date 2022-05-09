@@ -62,6 +62,7 @@ class Admin extends CI_Controller
 			foreach ($auth->result_array() as $user_data) {
 				$_SESSION['user_id'] = $user_data['user_id'];
 				$_SESSION['user_email'] = $user_email;
+				$_SESSION['user_category'] = $user_data['user_category'];
 				$_SESSION['status'] = "login";
 
 				$this->online($user_data['user_id']);
@@ -141,17 +142,22 @@ class Admin extends CI_Controller
 	{
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
-			$user_id = $_SESSION['user_id'];
 
-			$data = [
-				'title' => 'Admin | Users',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-				'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
-			];
+			if ($_SESSION['user_category'] == "admin") {
+				$user_id = $_SESSION['user_id'];
 
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/view_users');
-			$this->load->view('admin/template/footer');
+				$data = [
+					'title' => 'Admin | Users',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+					'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
+				];
+
+				$this->load->view('admin/template/header', $data);
+				$this->load->view('admin/view_users');
+				$this->load->view('admin/template/footer');
+			} else {
+				redirect('admin/dashboard');
+			}
 		} else {
 
 			// $this->login();
@@ -163,16 +169,21 @@ class Admin extends CI_Controller
 	{
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
-			$user_id = $_SESSION['user_id'];
 
-			$data = [
-				'title' => 'Admin | Lectures',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
-			];
+			if ($_SESSION['user_category'] == "admin") {
+				$user_id = $_SESSION['user_id'];
 
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/view_lectures');
-			$this->load->view('admin/template/footer');
+				$data = [
+					'title' => 'Admin | Lectures',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+				];
+
+				$this->load->view('admin/template/header', $data);
+				$this->load->view('admin/view_lectures');
+				$this->load->view('admin/template/footer');
+			} else {
+				redirect('admin/dashboard');
+			}
 		} else {
 
 			// $this->login();
@@ -184,16 +195,21 @@ class Admin extends CI_Controller
 	{
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
-			$user_id = $_SESSION['user_id'];
 
-			$data = [
-				'title' => 'Admin | Curiculum',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
-			];
+			if ($_SESSION['user_category'] == "admin") {
+				$user_id = $_SESSION['user_id'];
 
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/view_curiculum');
-			$this->load->view('admin/template/footer');
+				$data = [
+					'title' => 'Admin | Curiculum',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+				];
+
+				$this->load->view('admin/template/header', $data);
+				$this->load->view('admin/view_curiculum');
+				$this->load->view('admin/template/footer');
+			} else {
+				redirect('admin/dashboard');
+			}
 		} else {
 
 			// $this->login();
@@ -205,16 +221,21 @@ class Admin extends CI_Controller
 	{
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
-			$user_id = $_SESSION['user_id'];
 
-			$data = [
-				'title' => 'Admin | Events',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
-			];
+			if ($_SESSION['user_category'] == "admin") {
+				$user_id = $_SESSION['user_id'];
 
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/view_events');
-			$this->load->view('admin/template/footer');
+				$data = [
+					'title' => 'Admin | Events',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+				];
+
+				$this->load->view('admin/template/header', $data);
+				$this->load->view('admin/view_events');
+				$this->load->view('admin/template/footer');
+			} else {
+				redirect('admin/dashboard');
+			}
 		} else {
 
 			// $this->login();
