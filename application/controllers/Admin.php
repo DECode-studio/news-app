@@ -149,7 +149,7 @@ class Admin extends CI_Controller
 				$data = [
 					'title' => 'Admin | Users',
 					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
+					'user' => $this->db->query("SELECT * FROM tbl_user")
 				];
 
 				$this->load->view('admin/template/header', $data);

@@ -93,7 +93,66 @@
     </div>
 </div>
 <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2" data-bs-toggle="modal" data-bs-target="#frm_add_user" data-bs-whatever="@mdo">
         <i class="material-icons py-2" style="font-size: 30px;">add</i>
     </a>
 </div>
+
+<div class="modal fade" id="frm_add_user" tabindex="-1" aria-labelledby="frm_add_user" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="frm_add_user">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form role="form" method='post' action="<?php echo base_url('user/adduser') ?>" enctype='multipart/form-data'>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="txt_name" class="form-label">User name</label>
+                        <div class="input-group input-group-outline">
+                            <input type="text" class="form-control" id="txt_name" name="txt_name">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_email" class="form-label">Email address</label>
+                        <div class="input-group input-group-outline">
+                            <input type="text" class="form-control" id="txt_email" name="txt_email">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cb_category" class="form-label">Category</label>
+                        <select class="form-select px-2" id="cb_category" name="cb_category">
+                            <option class="form-select" selected>Choose user category</option>
+                            <option class="form-select" value="user">User</option>
+                            <option class="form-select" value="author">Author</option>
+                            <option class="form-select" value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_password" class="form-label">Password</label>
+                        <div class="input-group input-group-outline">
+                            <input type="password" class="form-control" id="txt_password" name="txt_password">
+                        </div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="ch_show" onclick="showPassword()">
+                        <label class="form-check-label" for="ch_show">show password</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var ch_show = document.getElementById('ch_show')
+    var txt_password = document.getElementById('txt_password')
+
+    function showPassword() {
+        txt_password.type === "password" ? txt_password.type = "text" : txt_password.type = "password"
+    }
+</script>
