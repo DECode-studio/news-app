@@ -68,7 +68,7 @@
                                             <span class="text-secondary text-xs font-weight-bold"><?= date('D, d M Y', strtotime($lecture_data['lecture_employed'])); ?></span>
                                         </td>
                                         <td class="align-middle">
-                                            <div class="ms-auto text-end">
+                                            <div class="d-flex flex-column">
                                                 <a type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?= base_url('lecture/deletelecture/' . $lecture_data['lecture_id']) ?>">
                                                     <i class="material-icons text-sm me-2">delete</i>Delete
                                                 </a>
