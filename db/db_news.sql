@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2022 pada 05.16
+-- Waktu pembuatan: 15 Bulan Mei 2022 pada 12.54
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.4.16
 
@@ -59,10 +59,17 @@ CREATE TABLE `tbl_comment` (
 CREATE TABLE `tbl_curiculum` (
   `curiculum_id` varchar(255) NOT NULL,
   `curiculum_name` varchar(255) DEFAULT NULL,
-  `curiculum_sks` int(255) DEFAULT NULL,
-  `lecture_id` varchar(255) DEFAULT NULL,
-  `lecture_name` varchar(255) DEFAULT NULL
+  `curiculum_sks` int(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_curiculum`
+--
+
+INSERT INTO `tbl_curiculum` (`curiculum_id`, `curiculum_name`, `curiculum_sks`) VALUES
+('Curiculum.ID_001', 'Fisika Listrik dan Cahaya', 3),
+('Curiculum.ID_002', 'Kalkulus', 2),
+('Curiculum.ID_003', 'Dasar Elektronika', 3);
 
 -- --------------------------------------------------------
 
@@ -97,8 +104,19 @@ CREATE TABLE `tbl_images` (
 
 CREATE TABLE `tbl_lecture` (
   `lecture_id` varchar(255) NOT NULL,
-  `lecture_name` varchar(255) DEFAULT NULL
+  `lecture_name` varchar(255) DEFAULT NULL,
+  `lecture_email` varchar(255) DEFAULT NULL,
+  `lecture_major` varchar(255) DEFAULT NULL,
+  `lecture_employed` timestamp(6) NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_lecture`
+--
+
+INSERT INTO `tbl_lecture` (`lecture_id`, `lecture_name`, `lecture_email`, `lecture_major`, `lecture_employed`) VALUES
+('Lecture.ID_001', 'Dr. Asu Edan', 'asu.edan@jayabaya.com', 'Ekonomi Bisnis', '2022-05-11 10:13:00.000000'),
+('Lecture.ID_20220515.112849', 'Prof. Dr. Bastard Asu Edan', 'bastard@jayabaya.ac.id', 'Ekonomi Bisnis', '2006-07-15 10:53:00.000000');
 
 -- --------------------------------------------------------
 
@@ -111,6 +129,29 @@ CREATE TABLE `tbl_like` (
   `user_id` varchar(255) DEFAULT NULL,
   `article_id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_subject`
+--
+
+CREATE TABLE `tbl_subject` (
+  `subject_id` varchar(255) DEFAULT NULL,
+  `lecture_id` varchar(255) DEFAULT NULL,
+  `curiculum_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_subject`
+--
+
+INSERT INTO `tbl_subject` (`subject_id`, `lecture_id`, `curiculum_id`) VALUES
+('Subject.ID_20220515.124531', 'Lecture.ID_20220515.112849', 'Curiculum.ID_001'),
+('Subject.ID_20220515.124840', 'Lecture.ID_001', 'Curiculum.ID_002'),
+('Subject.ID_20220515.124949', 'Lecture.ID_001', 'Curiculum.ID_001'),
+('Subject.ID_20220515.125102', 'Lecture.ID_20220515.112849', 'Curiculum.ID_003'),
+('Subject.ID_20220515.125117', 'Lecture.ID_20220515.112849', 'Curiculum.ID_002');
 
 -- --------------------------------------------------------
 
@@ -133,7 +174,8 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_email`, `user_category`, `user_status`, `user_password`) VALUES
 ('User.ID_001', 'The Tormentor', 'tormentor@gmail.com', 'admin', 'online', 'kuplay123'),
-('User.ID_002', 'Nur Wahid Azhar', 'wahid.azhar.45@gmail.com', 'admin', 'offline', 'kuplay123');
+('User.ID_002', 'Nur Wahid Azhar', 'wahid.azhar.45@gmail.com', 'admin', 'offline', 'kuplay123'),
+('User.ID_20220515.092510', 'Kuplay Community', 'kuplay.05@gmail.com', 'user', 'offline', 'kuplay123');
 
 --
 -- Indexes for dumped tables
