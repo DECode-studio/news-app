@@ -86,7 +86,6 @@
 									<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
 									<th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
 									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-									<th class="text-secondary opacity-7"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -110,11 +109,6 @@
 										</td>
 										<td class="align-middle text-center text-sm">
 											<span class="badge badge-sm <?php echo $user_data['user_status'] == 'online' ? 'bg-gradient-success' : 'bg-gradient-secondary' ?>"><?= $user_data['user_status']; ?></span>
-										</td>
-										<td class="align-middle">
-											<a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-												Edit
-											</a>
 										</td>
 									</tr>
 								<?php } ?>
