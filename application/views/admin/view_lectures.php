@@ -12,182 +12,64 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lecture</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Major</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subjects </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="./public/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+
+                                <?php
+                                foreach ($lecture->result_array() as $lecture_data) { ?>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl" style="width: 50px; height: 50px;">
+                                                    <i class="material-icons opacity-10">school</i>
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center ms-3">
+                                                    <h6 class="mb-0 text-sm"><?= $lecture_data['lecture_name']; ?></h6>
+                                                    <p class="text-xs text-secondary mb-0"><?= $lecture_data['lecture_email']; ?></p>
+                                                </div>
                                             </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">John Michael</h6>
-                                                <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0"><?= $lecture_data['lecture_major']; ?></p>
+                                            <p class="text-xs text-secondary mb-0">Lecture</p>
+                                        </td>
+                                        <td class="align-middle">
+                                            <?php
+                                            foreach ($curiculum->result_array() as $curiculum_data) {
+                                                foreach ($subject->result_array() as $subject_data) {
+
+                                                    if ($lecture_data['lecture_id'] == $subject_data['lecture_id']) {
+                                                        if ($curiculum_data['curiculum_id'] == $subject_data['curiculum_id']) {
+                                            ?>
+                                                            <div class="text-secondary text-xs font-weight-bold">- <?= $curiculum_data['curiculum_name']; ?></div>
+                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            ?>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold"><?= date('D, M Y', strtotime($lecture_data['lecture_employed'])); ?></span>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="ms-auto text-end">
+                                                <a type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?= base_url('lecture/deletelecture/' . $lecture_data['lecture_id']) ?>">
+                                                    <i class="material-icons text-sm me-2">delete</i>Delete
+                                                </a>
+                                                <a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#frm_update_user" data-bs-whatever="@mdo" onclick="">
+                                                    <i class="material-icons text-sm me-2">edit</i>Edit
+                                                </a>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                        <p class="text-xs text-secondary mb-0">Organization</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="public/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user2">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                                                <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                        <p class="text-xs text-secondary mb-0">Developer</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="public/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user3">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                                                <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Executive</p>
-                                        <p class="text-xs text-secondary mb-0">Projects</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="public/img/team-3.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user4">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Michael Levi</h6>
-                                                <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                        <p class="text-xs text-secondary mb-0">Developer</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Online</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="public/img/team-2.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user5">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Richard Gran</h6>
-                                                <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                        <p class="text-xs text-secondary mb-0">Executive</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img src="public/img/team-4.jpg" class="avatar avatar-sm me-3 border-radius-lg" alt="user6">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                                                <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">Programator</p>
-                                        <p class="text-xs text-secondary mb-0">Developer</p>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-                                    </td>
-                                    <td class="align-middle text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
-                                    </td>
-                                    <td class="align-middle">
-                                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                            Edit
-                                        </a>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -196,8 +78,59 @@
         </div>
     </div>
 </div>
+
 <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2" data-bs-toggle="modal" data-bs-target="#frm_add_lecture" data-bs-whatever="@mdo" onclick="">
         <i class="material-icons py-2" style="font-size: 30px;">add</i>
     </a>
+</div>
+
+<div class="modal fade" id="frm_add_lecture" tabindex="-1" aria-labelledby="frm_add_lecture" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="frm_add_lecture">Add User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form role="form" method='post' action="<?= base_url('user/adduser') ?>" enctype='multipart/form-data'>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="txt_name" class="form-label">User name</label>
+                        <div class="input-group input-group-outline">
+                            <input type="text" class="form-control" id="txt_name" name="txt_name">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_email" class="form-label">Email address</label>
+                        <div class="input-group input-group-outline">
+                            <input type="text" class="form-control" id="txt_email" name="txt_email">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cb_category" class="form-label">Category</label>
+                        <select class="form-select px-2" id="cb_category" name="cb_category">
+                            <option class="form-select" selected>Choose user category</option>
+                            <option class="form-select" value="user">User</option>
+                            <option class="form-select" value="author">Author</option>
+                            <option class="form-select" value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txt_password" class="form-label">Password</label>
+                        <div class="input-group input-group-outline">
+                            <input type="password" class="form-control" id="txt_password" name="txt_password">
+                        </div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="ch_show" onclick="showPassword()">
+                        <label class="form-check-label" for="ch_show">show password</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

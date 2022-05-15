@@ -8,16 +8,62 @@ class Lecture extends CI_Controller
 {
     public function addLecture()
     {
-        # code...
+        if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+
+            $date = date('Ymd.His');
+            $lecture_id = "Lecture.ID_" . $date;
+
+            $data = array(
+                'lecture_id' => $lecture_id,
+                'lecture_name' => $this->input->post('txt_name'),
+                'lecture_email' => $this->input->post('txt_email'),
+                'lecture_major' => $this->input->post('txt_major'),
+                'lecture_employed' => $this->input->post('dt_employed')
+            );
+
+            $this->db->insert('tbl_lecture', $data);
+
+            redirect('admin/lectures');
+        } else {
+            redirect('admin/login');
+        }
     }
 
     public function updateLecture()
     {
-        # code...
+        if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+
+            $lecture_id = $this->input->post('txt_lecture_id');
+
+            $data = array(
+                'lecture_id' => $lecture_id,
+                'lecture_name' => $this->input->post('txt_name'),
+                'lecture_email' => $this->input->post('txt_email'),
+                'lecture_major' => $this->input->post('txt_major'),
+                'lecture_employed' => $this->input->post('dt_employed')
+            );
+
+            $this->db->where('user_id', $lecture_id);
+            $this->db->update('tbl_lecture', $data);
+
+            redirect('admin/lectures');
+        } else {
+            redirect('admin/login');
+        }
     }
 
-    public function deleteLecture()
+    public function deleteLecture($lecture_id)
     {
-        # code...
+        if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+
+            $where = array('lecture_id' => $lecture_id);
+
+            $this->db->delete('tbl_lecture', $where);
+            $this->db->delete('tbl_subject', $where);
+
+            redirect('admin/lectures');
+        } else {
+            redirect('admin/login');
+        }
     }
 }
