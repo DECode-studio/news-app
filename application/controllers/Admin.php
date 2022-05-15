@@ -204,11 +204,14 @@ class Admin extends CI_Controller
 
 				$data = [
 					'title' => 'Admin | Curiculum',
-					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+					'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
+					'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
+					'subject' => $this->db->query("SELECT * FROM tbl_subject")
 				];
 
 				$this->load->view('admin/template/header', $data);
-				$this->load->view('admin/view_curiculum');
+				$this->load->view('admin/view_curiculum', $data);
 				$this->load->view('admin/template/footer');
 			} else {
 				redirect('admin/dashboard');
