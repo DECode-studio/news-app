@@ -100,15 +100,27 @@ class Admin extends CI_Controller
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 			$user_id = $_SESSION['user_id'];
+			$txt_search = $this->input->post('txt_search');
 
-			$data = [
-				'title' => 'Admin | Dashboard',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-				'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
-			];
+
+			if ($txt_search == null or $txt_search == "") {
+				$data = [
+					'title' => 'Admin | Dashboard',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+					'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
+				];
+			} else {
+				$data = [
+					'title' => 'Admin | Dashboard',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+					'user' => $this->db->query("SELECT * FROM tbl_user where user_name = '$txt_search' and user_category='admin' or  user_category='author'")
+				];
+			}
+
+
 
 			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/view_dashboard');
+			$this->load->view('admin/view_dashboard', $data);
 			$this->load->view('admin/template/footer');
 		} else {
 
@@ -122,11 +134,21 @@ class Admin extends CI_Controller
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 			$user_id = $_SESSION['user_id'];
+			$txt_search = $this->input->post('txt_search');
 
-			$data = [
-				'title' => 'Admin | Articles',
-				'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
-			];
+			if ($txt_search == null or $txt_search == "") {
+				$data = [
+					'title' => 'Admin | Articles',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+					'news' => $this->db->query("SELECT * FROM tbl_article")
+				];
+			} else {
+				$data = [
+					'title' => 'Admin | Articles',
+					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+					'news' => $this->db->query("SELECT * FROM tbl_article")
+				];
+			}
 
 			$this->load->view('admin/template/header', $data);
 			$this->load->view('admin/view_news');
@@ -145,15 +167,25 @@ class Admin extends CI_Controller
 
 			if ($_SESSION['user_category'] == "admin") {
 				$user_id = $_SESSION['user_id'];
+				$txt_search = $this->input->post('txt_search');
 
-				$data = [
-					'title' => 'Admin | Users',
-					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'user' => $this->db->query("SELECT * FROM tbl_user")
-				];
+
+				if ($txt_search == null or $txt_search == "") {
+					$data = [
+						'title' => 'Admin | Users',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'user' => $this->db->query("SELECT * FROM tbl_user")
+					];
+				} else {
+					$data = [
+						'title' => 'Admin | Users',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'user' => $this->db->query("SELECT * FROM tbl_user where user_name like'%$txt_search%' or user_email like'%$txt_search%'")
+					];
+				}
 
 				$this->load->view('admin/template/header', $data);
-				$this->load->view('admin/view_users');
+				$this->load->view('admin/view_users', $data);
 				$this->load->view('admin/template/footer');
 			} else {
 				redirect('admin/dashboard');
@@ -172,14 +204,25 @@ class Admin extends CI_Controller
 
 			if ($_SESSION['user_category'] == "admin") {
 				$user_id = $_SESSION['user_id'];
+				$txt_search = $this->input->post('txt_search');
 
-				$data = [
-					'title' => 'Admin | Lectures',
-					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
-					'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
-					'subject' => $this->db->query("SELECT * FROM tbl_subject")
-				];
+				if ($txt_search == null or $txt_search == "") {
+					$data = [
+						'title' => 'Admin | Lectures',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
+						'subject' => $this->db->query("SELECT * FROM tbl_subject")
+					];
+				} else {
+					$data = [
+						'title' => 'Admin | Lectures',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'lecture' => $this->db->query("SELECT * FROM tbl_lecture where lecture_name like '%$txt_search%' or lecture_email like '%$txt_search%'"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
+						'subject' => $this->db->query("SELECT * FROM tbl_subject")
+					];
+				}
 
 				$this->load->view('admin/template/header', $data);
 				$this->load->view('admin/view_lectures');
@@ -201,14 +244,25 @@ class Admin extends CI_Controller
 
 			if ($_SESSION['user_category'] == "admin") {
 				$user_id = $_SESSION['user_id'];
+				$txt_search = $this->input->post('txt_search');
 
-				$data = [
-					'title' => 'Admin | Curiculum',
-					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
-					'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
-					'subject' => $this->db->query("SELECT * FROM tbl_subject")
-				];
+				if ($txt_search == null or $txt_search == "") {
+					$data = [
+						'title' => 'Admin | Curiculum',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
+						'subject' => $this->db->query("SELECT * FROM tbl_subject")
+					];
+				} else {
+					$data = [
+						'title' => 'Admin | Curiculum',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum where curiculum_name like '%$txt_search%' or curiculum_sks like '%$txt_search%'"),
+						'subject' => $this->db->query("SELECT * FROM tbl_subject")
+					];
+				}
 
 				$this->load->view('admin/template/header', $data);
 				$this->load->view('admin/view_curiculum', $data);
@@ -230,6 +284,7 @@ class Admin extends CI_Controller
 
 			if ($_SESSION['user_category'] == "admin") {
 				$user_id = $_SESSION['user_id'];
+				$txt_search = $this->input->post('txt_search');
 
 				$data = [
 					'title' => 'Admin | Events',

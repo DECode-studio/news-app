@@ -103,12 +103,18 @@
 						</ol>
 						<h6 class="font-weight-bolder mb-0"><?php echo $this->uri->segment(2) ?></h6>
 					</nav>
+
+					<?php $segment = $this->uri->segment(2); ?>
+
 					<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
 						<div class="ms-md-auto pe-md-3 d-flex align-items-center">
-							<div class="input-group input-group-outline">
-								<label class="form-label">Type here...</label>
-								<input type="text" class="form-control">
-							</div>
+							<form role="form" action="<?= base_url('admin/' . $segment) ?>" method="post">
+								<div class="input-group input-group-outline">
+									<label class="form-label">Type here...</label>
+									<input type="text" class="form-control" id="txt_search" name="txt_search">
+								</div>
+								<input type="submit" hidden />
+							</form>
 						</div>
 						<ul class="navbar-nav  justify-content-end">
 							<li class="nav-item d-flex align-items-center">
@@ -119,7 +125,6 @@
 										<?= $auth_data['user_name']; ?>
 
 									</div>
-									<!-- <div class="d-sm-inline d-none align-self-center ms-2">Profile</div> -->
 								</a>
 							</li>
 							<li class="nav-item d-flex align-items-center ms-4">
@@ -127,11 +132,6 @@
 									<i class="material-icons opacity-10 align-self-center">notifications</i>
 								</a>
 							</li>
-							<!-- <li class="nav-item d-flex align-items-center ">
-							<a href="#" class="nav-link text-body font-weight-bold px-0 d-flex">
-								<i class="material-icons opacity-10 align-self-center">settings</i>
-							</a>
-						</li> -->
 							<li class="nav-item dropdown d-flex align-items-center ms-4">
 								<a href="javascript:;" class="nav-link text-body px-0 d-flex" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="material-icons opacity-10 align-self-center">settings</i>
