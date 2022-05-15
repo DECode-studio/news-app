@@ -159,7 +159,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="frm_update_user">Add User</h5>
+                <h5 class="modal-title" id="frm_update_user">Edit User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form role="form" method='post' action="<?= base_url('user/updateuser') ?>" enctype='multipart/form-data'>

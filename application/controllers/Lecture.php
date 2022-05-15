@@ -33,17 +33,17 @@ class Lecture extends CI_Controller
     {
         if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 
-            $lecture_id = $this->input->post('txt_lecture_id');
+            $lecture_id = $this->input->post('txt_edit_id');
 
             $data = array(
                 'lecture_id' => $lecture_id,
-                'lecture_name' => $this->input->post('txt_name'),
-                'lecture_email' => $this->input->post('txt_email'),
-                'lecture_major' => $this->input->post('txt_major'),
-                'lecture_employed' => $this->input->post('dt_employed')
+                'lecture_name' => $this->input->post('txt_edit_name'),
+                'lecture_email' => $this->input->post('txt_edit_email'),
+                'lecture_major' => $this->input->post('txt_edit_major'),
+                'lecture_employed' => $this->input->post('dt_edit_employed')
             );
 
-            $this->db->where('user_id', $lecture_id);
+            $this->db->where('lecture_id', $lecture_id);
             $this->db->update('tbl_lecture', $data);
 
             redirect('admin/lectures');
