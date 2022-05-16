@@ -107,13 +107,13 @@ class Admin extends CI_Controller
 				$data = [
 					'title' => 'Admin | Dashboard',
 					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author'")
+					'user' => $this->db->query("SELECT * FROM tbl_user where user_category='admin' or  user_category='author' ORDER BY user_name ASC")
 				];
 			} else {
 				$data = [
 					'title' => 'Admin | Dashboard',
 					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'user' => $this->db->query("SELECT * FROM tbl_user where user_name = '$txt_search' and user_category='admin' or  user_category='author'")
+					'user' => $this->db->query("SELECT * FROM tbl_user where user_name = '$txt_search' and user_category='admin' or  user_category='author' ORDER BY user_name ASC")
 				];
 			}
 
@@ -174,13 +174,13 @@ class Admin extends CI_Controller
 					$data = [
 						'title' => 'Admin | Users',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-						'user' => $this->db->query("SELECT * FROM tbl_user")
+						'user' => $this->db->query("SELECT * FROM tbl_user ORDER BY user_name ASC")
 					];
 				} else {
 					$data = [
 						'title' => 'Admin | Users',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-						'user' => $this->db->query("SELECT * FROM tbl_user where user_name like'%$txt_search%' or user_email like'%$txt_search%'")
+						'user' => $this->db->query("SELECT * FROM tbl_user where user_name like'%$txt_search%' or user_email like'%$txt_search%' ORDER BY user_name ASC")
 					];
 				}
 
@@ -210,7 +210,7 @@ class Admin extends CI_Controller
 					$data = [
 						'title' => 'Admin | Lectures',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-						'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
+						'lecture' => $this->db->query("SELECT * FROM tbl_lecture ORDER BY lecture_name ASC"),
 						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
 						'subject' => $this->db->query("SELECT * FROM tbl_subject")
 					];
@@ -218,7 +218,7 @@ class Admin extends CI_Controller
 					$data = [
 						'title' => 'Admin | Lectures',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-						'lecture' => $this->db->query("SELECT * FROM tbl_lecture where lecture_name like '%$txt_search%' or lecture_email like '%$txt_search%'"),
+						'lecture' => $this->db->query("SELECT * FROM tbl_lecture where lecture_name like '%$txt_search%' or lecture_email like '%$txt_search%' ORDER BY lecture_name ASC"),
 						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
 						'subject' => $this->db->query("SELECT * FROM tbl_subject")
 					];
@@ -251,7 +251,7 @@ class Admin extends CI_Controller
 						'title' => 'Admin | Curiculum',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
 						'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
-						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum ORDER BY curiculum_name ASC"),
 						'subject' => $this->db->query("SELECT * FROM tbl_subject")
 					];
 				} else {
@@ -259,7 +259,7 @@ class Admin extends CI_Controller
 						'title' => 'Admin | Curiculum',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
 						'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
-						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum where curiculum_name like '%$txt_search%' or curiculum_sks like '%$txt_search%'"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum where curiculum_name like '%$txt_search%' or curiculum_sks like '%$txt_search%' ORDER BY curiculum_name ASC"),
 						'subject' => $this->db->query("SELECT * FROM tbl_subject")
 					];
 				}
@@ -286,13 +286,22 @@ class Admin extends CI_Controller
 				$user_id = $_SESSION['user_id'];
 				$txt_search = $this->input->post('txt_search');
 
-				$data = [
-					'title' => 'Admin | Events',
-					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'")
-				];
+				if ($txt_search == null or $txt_search == "") {
+					$data = [
+						'title' => 'Admin | Events',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'event' => $this->db->query("SELECT * FROM tbl_event ORDER BY event_time DESC")
+					];
+				} else {
+					$data = [
+						'title' => 'Admin | Events',
+						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+						'event' => $this->db->query("SELECT * FROM tbl_event where event_title like '%$txt_search%' or event_time like '%$txt_search%' or event_detail like '%$txt_search%' ORDER BY event_time DESC")
+					];
+				}
 
 				$this->load->view('admin/template/header', $data);
-				$this->load->view('admin/view_events');
+				$this->load->view('admin/view_events', $data);
 				$this->load->view('admin/template/footer');
 			} else {
 				redirect('admin/dashboard');
