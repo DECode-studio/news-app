@@ -103,33 +103,40 @@
 							</div>
 						</div>
 						<div class="col-md-9 col-12">
-						<div class="card-body">
-							<h5 class="card-title">Seminar Nasional 2K22 Kesehatan Mental</h5>
-							<div class="row">
-								<div class="col-md-12 col-12">
-									<div class="row">
-										<div class="col-md-2 col-4"><b>Author</b></div>
-										<div class="col-md-1 col-1">:</div>										
-										<div class="col-md-9 col-6">Bambang</div>
-									</div>
-									<div class="row">
-										<div class="col-md-2 col-4"><b>Date Time</b></div>
-										<div class="col-md-1 col-1">:</div>	
-										<div class="col-md-9 col-6">Senin, 05 November 2022</div>
-									</div>
-									<div class="row">
-										<div class="col-md-2 col-4"><b>News Page</b></div>
-										<div class="col-md-1 col-1">:</div>	
-										<div class="col-md-9 col-6 text-black news">Lorem ipsum dolor sit amet amet jamet met ajay banakin baki mati sama bapaknye berantem ga jelas saling kuat kuatan ga danta pokoknya bodo ah Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus unde velit porro rem facere, vitae in, id amet tempora non aperiam eveniet neque aspernatur libero dolorum omnis ipsa maiores ea.</div>
+							<div class="card-body">
+								<h5 class="card-title">Seminar Nasional 2K22 Kesehatan Mental</h5>
+								<div class="row">
+									<div class="col-md-12 col-12">
+										<div class="row">
+											<div class="col-md-2 col-4"><b>Author</b></div>
+											<div class="col-md-1 col-1">:</div>
+											<div class="col-md-9 col-6">Bambang</div>
+										</div>
+										<div class="row">
+											<div class="col-md-2 col-4"><b>Date Time</b></div>
+											<div class="col-md-1 col-1">:</div>
+											<div class="col-md-9 col-6">Senin, 05 November 2022</div>
+										</div>
+										<div class="row">
+											<div class="col-md-2 col-4"><b>News Page</b></div>
+											<div class="col-md-1 col-1">:</div>
+											<div class="col-md-9 col-6 text-black news">Lorem ipsum dolor sit amet amet jamet met ajay banakin baki mati sama bapaknye berantem ga jelas saling kuat kuatan ga danta pokoknya bodo ah Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus unde velit porro rem facere, vitae in, id amet tempora non aperiam eveniet neque aspernatur libero dolorum omnis ipsa maiores ea.</div>
+										</div>
 									</div>
 								</div>
+								<br>
+								<div class="ms-auto text-end">
+									<a type="submit" class="btn btn-link text-success text-gradient px-3 mb-0" href="">
+										<i class="material-icons text-sm me-2">visibility</i>show
+									</a>
+									<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;">
+										<i class="material-icons text-sm me-2">delete</i>Delete
+									</a>
+									<a class="btn btn-link text-dark px-3 mb-0" href="javascript:;">
+										<i class="material-icons text-sm me-2">edit</i>Edit
+									</a>
+								</div>
 							</div>
-							<br>
-							<div class="ms-auto text-end">
-								<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-								<a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">edit</i>Edit</a>
-							</div>
-						</div>
 						</div>
 					</div>
 				</div>
@@ -145,32 +152,32 @@
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method='post' action="#" enctype='multipart/form-data'>
-		<div class="input-group">
-			<input type="file" name="files[]" class="file" multiple />
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form method='post' action="#" enctype='multipart/form-data'>
+					<div class="input-group">
+						<input type="file" name="files[]" class="file" multiple />
+					</div>
+					<br>
+					<div class="input-group input-group-outline">
+						<label for="exampleFormControlInput1" class="form-label">Title</label>
+						<input type="text" class="form-control" id="exampleFormControlInput1">
+					</div>
+					<br>
+					<div class="input-group input-group-outline">
+						<textarea type="text" class="form-control" id="content" rows="5" placeholder="Content.."></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" name="submit" class="btn btn-primary">Posting</button>
+			</div>
 		</div>
-		<br>
-		<div class="input-group input-group-outline">
-			<label for="exampleFormControlInput1" class="form-label">Title</label>
-			<input type="text" class="form-control" id="exampleFormControlInput1" >
-		</div>
-		<br>
-		<div class="input-group input-group-outline">
-			<textarea type="text" class="form-control" id="content" rows="5" placeholder="Content.."></textarea>
-		</div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" name="submit" class="btn btn-primary">Posting</button>
-      </div>
-    </div>
-  </div>
+	</div>
 </div>

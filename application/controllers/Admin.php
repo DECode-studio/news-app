@@ -117,8 +117,6 @@ class Admin extends CI_Controller
 				];
 			}
 
-
-
 			$this->load->view('admin/template/header', $data);
 			$this->load->view('admin/view_dashboard', $data);
 			$this->load->view('admin/template/footer');
@@ -140,13 +138,13 @@ class Admin extends CI_Controller
 				$data = [
 					'title' => 'Admin | Articles',
 					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'news' => $this->db->query("SELECT * FROM tbl_article")
+					'news' => $this->db->query("SELECT * FROM tbl_article ORDER BY article_time DESC")
 				];
 			} else {
 				$data = [
 					'title' => 'Admin | Articles',
 					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'news' => $this->db->query("SELECT * FROM tbl_article")
+					'news' => $this->db->query("SELECT * FROM tbl_article ORDER BY article_time DESC")
 				];
 			}
 
@@ -211,7 +209,7 @@ class Admin extends CI_Controller
 						'title' => 'Admin | Lectures',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
 						'lecture' => $this->db->query("SELECT * FROM tbl_lecture ORDER BY lecture_name ASC"),
-						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum ORDER BY curiculum_name ASC"),
 						'subject' => $this->db->query("SELECT * FROM tbl_subject")
 					];
 				} else {
@@ -219,7 +217,7 @@ class Admin extends CI_Controller
 						'title' => 'Admin | Lectures',
 						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
 						'lecture' => $this->db->query("SELECT * FROM tbl_lecture where lecture_name like '%$txt_search%' or lecture_email like '%$txt_search%' ORDER BY lecture_name ASC"),
-						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum"),
+						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum ORDER BY curiculum_name ASC"),
 						'subject' => $this->db->query("SELECT * FROM tbl_subject")
 					];
 				}
