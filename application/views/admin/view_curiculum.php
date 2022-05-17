@@ -1,6 +1,23 @@
 <div class="container-fluid py-4">
     <div class="row mt-3">
         <div class="col-12">
+            <div class="col-12 d-flex">
+                <div class="col-4" style="background-color: ">
+                    <h5>Kelas</h5>
+                    <!-- SelectMenu pakai Javascript untuk Parsing Kelas nya -->
+                    <select id="pilihKelas" class="form-select btn-outline-secondary mb-0 btn-sm d-flex align-items-center justify-content-center"  aria-label="Default select example">
+                        <option value="1">Manajemen</option>
+                        <option value="2" selected="selected">Akuntansi</option>
+                    </select>
+
+                    <script>
+                        var e = document.getElementById("pilihKelas");
+                        var strUser = e.value; // 2
+                        var strUser = e.options[e.selectedIndex].text; //test2
+                    </script>
+                </div>
+            </div>
+            <br>
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
