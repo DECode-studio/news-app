@@ -57,7 +57,7 @@ class Admin extends CI_Controller
 			$user_email = $this->input->post('txt_email');
 			$user_password = $this->input->post('txt_password');
 
-			$auth = $this->db->query("SELECT * FROM tbl_user where user_email='$user_email' and user_password='$user_password'");
+			$auth = $this->db->query("SELECT * FROM tbl_user where user_email='$user_email' and user_password='$user_password' LIMIT 1");
 
 			foreach ($auth->result_array() as $user_data) {
 				$_SESSION['user_id'] = $user_data['user_id'];
@@ -73,7 +73,7 @@ class Admin extends CI_Controller
 
 			$user_data = $auth->result_array();
 
-			if ($user_data == null) {
+			if ($user_data == null || $user_data == "") {
 				$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
 			}
 
