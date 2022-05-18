@@ -239,6 +239,9 @@
 			</div>
 			<form role="form" method='post' action="<?= base_url('article/updatearticle') ?>" enctype='multipart/form-data'>
 				<div class="modal-body">
+					<script>
+						<?php $articleId = "<script>document.write(articleId)</script>"; ?>
+					</script>
 					<div class="mb-3" hidden>
 						<label for="txt_edit_id" class="form-label">Article's ID</label>
 						<div class="input-group input-group-outline">
@@ -251,6 +254,19 @@
 							<input type="file" id="fp_edit_image[]" name="fp_edit_image[]" class="file" multiple />
 						</div>
 					</div>
+					<!-- <div class="d-flex mb-3 my-3 flex-wrap">
+						<div class="icon icon-lg icon-shape shadow-dark text-center border-radius-xl ms-2">
+							<?php
+							foreach ($image->result_array() as $image_data) {
+								if ($image_data['data_id'] == 'Article_ID_20220518_094011') {
+							?>
+									<img class="icon icon-lg icon-shape" src="<?= 'data:image/jpeg;base64,' . base64_encode($image_data['image_file']); ?>">
+							<?php
+								}
+							}
+							?>
+						</div>
+					</div> -->
 					<div class="mb-3">
 						<label for="txt_edit_title" class="form-label">Article's title</label>
 						<div class="input-group input-group-outline">
