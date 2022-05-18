@@ -138,18 +138,22 @@ class Admin extends CI_Controller
 				$data = [
 					'title' => 'Admin | Articles',
 					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'news' => $this->db->query("SELECT * FROM tbl_article ORDER BY article_time DESC")
+					'news' => $this->db->query("SELECT * FROM tbl_article ORDER BY article_time DESC"),
+					'image' => $this->db->query("SELECT * FROM tbl_images"),
+					'user' => $this->db->query("SELECT * FROM tbl_user")
 				];
 			} else {
 				$data = [
 					'title' => 'Admin | Articles',
 					'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-					'news' => $this->db->query("SELECT * FROM tbl_article ORDER BY article_time DESC")
+					'news' => $this->db->query("SELECT * FROM tbl_article where article_title like'%$txt_search%' or article_time like'%$txt_search%' or article_body like'%$txt_search%' ORDER BY article_time DESC"),
+					'image' => $this->db->query("SELECT * FROM tbl_images"),
+					'user' => $this->db->query("SELECT * FROM tbl_user")
 				];
 			}
 
 			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/view_news');
+			$this->load->view('admin/view_news', $data);
 			$this->load->view('admin/template/footer');
 		} else {
 

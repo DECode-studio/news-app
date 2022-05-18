@@ -64,85 +64,108 @@
 					</div>
 				</div>
 				<!-- Card News List -->
-				<div class="card m-3" style="max-width: 100%;">
-					<div class="row g-0">
-						<div class="col-md-3 col-12">
-							<div id="cr-uko" class="carousel slide img-pro" style="margin: auto; margin-top: 10px; margin-bottom: 10px;" data-bs-ride="carousel">
-								<div class="carousel-indicators">
-									<button type="button" data-bs-target="#cr-uko" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-									<button type="button" data-bs-target="#cr-uko" data-bs-slide-to="1" aria-label="Slide 2"></button>
-									<button type="button" data-bs-target="#cr-uko" data-bs-slide-to="2" aria-label="Slide 3"></button>
-									<button type="button" data-bs-target="#cr-uko" data-bs-slide-to="3" aria-label="Slide 4"></button>
-									<button type="button" data-bs-target="#cr-uko" data-bs-slide-to="4" aria-label="Slide 5"></button>
+
+
+				<?php
+				foreach ($news->result_array() as $news_data) {
+				?>
+					<div class="card m-3" style="max-width: 100%;">
+						<div class="row g-0">
+							<div class="col-md-3 col-12">
+								<div id="<?= $news_data['article_id']; ?>" class="carousel slide img-pro" style="margin: auto; margin-top: 10px; margin-bottom: 10px;" data-bs-ride="carousel">
+									<div class="carousel-indicators">
+										<?php
+										$count_button = 0;
+
+										foreach ($image->result_array() as $image_data) {
+											if ($news_data['article_id'] == $image_data['data_id']) {
+										?>
+												<button type="button" data-bs-target="#<?= $news_data['article_id']; ?>" data-bs-slide-to="<?= $count_button; ?>" <?php echo $count_button == 0 ?  'class="active"' : '' ?> aria-label="Slide <?= $count_button + 1; ?>" <?php echo $count_button == 0 ?  'aria-current="true"' : '' ?>></button>
+										<?php
+												$count_button++;
+											}
+										}
+										?>
+									</div>
+									<div class="carousel-inner">
+										<?php
+										$count_image = 0;
+
+										foreach ($image->result_array() as $image_data) {
+											if ($news_data['article_id'] == $image_data['data_id']) {
+										?>
+												<div class="carousel-item <?php echo $count_image == 0 ?  'active' : '' ?>">
+													<?= '<img src="data:image/jpeg;base64,' . base64_encode($image_data['image_file']) . '" class="d-block img-pro">' ?>
+												</div>
+										<?php
+												$count_image++;
+											}
+										}
+										?>
+									</div>
+									<button class="carousel-control-prev" type="button" data-bs-target="#<?= $news_data['article_id']; ?>" data-bs-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button" data-bs-target="#<?= $news_data['article_id']; ?>" data-bs-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="visually-hidden">Next</span>
+									</button>
 								</div>
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<img src="https://decode-studio.github.io/wahid.github.io/public/images/uko/1.jpg" class="d-block img-pro">
-									</div>
-									<div class="carousel-item">
-										<img src="https://decode-studio.github.io/wahid.github.io/public/images/uko/4.jpg" class="d-block img-pro">
-									</div>
-									<div class="carousel-item">
-										<img src="https://decode-studio.github.io/wahid.github.io/public/images/uko/5.jpg" class="d-block img-pro">
-									</div>
-									<div class="carousel-item">
-										<img src="https://decode-studio.github.io/wahid.github.io/public/images/uko/7.jpg" class="d-block img-pro">
-									</div>
-									<div class="carousel-item">
-										<img src="https://decode-studio.github.io/wahid.github.io/public/images/uko/8.jpg" class="d-block img-pro">
-									</div>
-								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#cr-uko" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#cr-uko" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
 							</div>
-						</div>
-						<div class="col-md-9 col-12">
-							<div class="card-body">
-								<h5 class="card-title">Seminar Nasional 2K22 Kesehatan Mental</h5>
-								<div class="row">
-									<div class="col-md-12 col-12">
-										<div class="row">
-											<div class="col-md-2 col-4"><b>Author</b></div>
-											<div class="col-md-1 col-1">:</div>
-											<div class="col-md-9 col-6">Bambang</div>
-										</div>
-										<div class="row">
-											<div class="col-md-2 col-4"><b>Date Time</b></div>
-											<div class="col-md-1 col-1">:</div>
-											<div class="col-md-9 col-6">Senin, 05 November 2022</div>
-										</div>
-										<div class="row">
-											<div class="col-md-2 col-4"><b>News Page</b></div>
-											<div class="col-md-1 col-1">:</div>
-											<div class="col-md-9 col-6 text-black news">Lorem ipsum dolor sit amet amet jamet met ajay banakin baki mati sama bapaknye berantem ga jelas saling kuat kuatan ga danta pokoknya bodo ah Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus unde velit porro rem facere, vitae in, id amet tempora non aperiam eveniet neque aspernatur libero dolorum omnis ipsa maiores ea.</div>
+							<div class="col-md-9 col-12">
+								<div class="card-body">
+									<h5 class="card-title"><?= $news_data['article_title']; ?></h5>
+									<div class="row">
+										<div class="col-md-12 col-12">
+											<div class="row">
+												<div class="col-md-2 col-4"><b>Author</b></div>
+												<div class="col-md-1 col-1">:</div>
+												<div class="col-md-9 col-6">
+													<?php
+													foreach ($user->result_array() as $user_data) {
+														if ($news_data['article_author'] == $user_data['user_id']) {
+															echo $user_data['user_name'];
+														}
+													}
+													?>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2 col-4"><b>Date Time</b></div>
+												<div class="col-md-1 col-1">:</div>
+												<div class="col-md-9 col-6">
+													<?= date('D, d M Y', strtotime($news_data['article_time'])); ?>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-2 col-4"><b>Content</b></div>
+												<div class="col-md-1 col-1">:</div>
+												<div class="col-md-9 col-6 text-black news">
+													<?= $news_data['article_body']; ?>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-								<br>
-								<div class="ms-auto text-end">
-									<a type="submit" class="btn btn-link text-success text-gradient px-3 mb-0" href="">
-										<i class="material-icons text-sm me-2">visibility</i>show
-									</a>
-									<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;">
-										<i class="material-icons text-sm me-2">delete</i>Delete
-									</a>
-									<a class="btn btn-link text-dark px-3 mb-0" href="javascript:;">
-										<i class="material-icons text-sm me-2">edit</i>Edit
-									</a>
+									<br>
+									<div class="ms-auto text-end">
+										<a type="submit" class="btn btn-link text-success text-gradient px-3 mb-0" href="">
+											<i class="material-icons text-sm me-2">visibility</i>show
+										</a>
+										<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;">
+											<i class="material-icons text-sm me-2">delete</i>Delete
+										</a>
+										<a class="btn btn-link text-dark px-3 mb-0" href="javascript:;">
+											<i class="material-icons text-sm me-2">edit</i>Edit
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				<?php } ?>
 			</div>
 		</div>
-
 	</div>
 </div>
 <div class="fixed-plugin">
@@ -158,26 +181,38 @@
 				<h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
-				<form method='post' action="#" enctype='multipart/form-data'>
-					<div class="input-group">
-						<input type="file" name="files[]" class="file" multiple />
+			<form role="form" method='post' action="<?= base_url('article/addarticle') ?>" enctype='multipart/form-data'>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="fp_image" class="form-label">Article's Images</label>
+						<div class="input-group">
+							<input type="file" id="fp_image[]" name="fp_image[]" class="file" multiple />
+						</div>
 					</div>
-					<br>
-					<div class="input-group input-group-outline">
-						<label for="exampleFormControlInput1" class="form-label">Title</label>
-						<input type="text" class="form-control" id="exampleFormControlInput1">
+					<div class="mb-3">
+						<label for="txt_title" class="form-label">Article's title</label>
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="txt_title" name="txt_title">
+						</div>
 					</div>
-					<br>
-					<div class="input-group input-group-outline">
-						<textarea type="text" class="form-control" id="content" rows="5" placeholder="Content.."></textarea>
+					<div class="mb-3">
+						<label for="dt_time" class="form-label">Time</label>
+						<div class="input-group input-group-outline">
+							<input type="datetime-local" class="form-control" id="dt_time" name="dt_time">
+						</div>
 					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				<button type="button" name="submit" class="btn btn-primary">Posting</button>
-			</div>
+					<div class="mb-3">
+						<label for="txt_content" class="form-label">Content</label>
+						<div class="input-group input-group-outline">
+							<textarea type="text" class="form-control" id="txt_content" name="txt_content" rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" name="submit" class="btn btn-primary">Add</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
