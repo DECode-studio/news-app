@@ -50,7 +50,7 @@ class Article extends CI_Controller
             }
 
             foreach ($image_file as $key => $image_data) {
-                $image_id = "Image.ID_" . $date . "-" . $key;
+                $image_id = "Image.ID_" . $date . "_" . $key;
 
                 $images = array(
                     'image_id' => $image_id,

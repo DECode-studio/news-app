@@ -54,6 +54,10 @@
 	</div>
 </div>
 
+<script>
+	var articleId = "";
+</script>
+
 <div class="container-fluid py-2">
 	<div class="row">
 		<div class="col-md-12 mt-4">
@@ -64,8 +68,6 @@
 					</div>
 				</div>
 				<!-- Card News List -->
-
-
 				<?php
 				foreach ($news->result_array() as $news_data) {
 				?>
@@ -141,13 +143,25 @@
 											<div class="row">
 												<div class="col-md-2 col-4"><b>Content</b></div>
 												<div class="col-md-1 col-1">:</div>
-												<div class="col-md-9 col-6 text-black news">
+												<div class="col-md-9 col-6 text-black news" id="txt_body<?= $news_data['article_id']; ?>">
 													<?= $news_data['article_body']; ?>
 												</div>
 											</div>
 										</div>
 									</div>
 									<br>
+									<script>
+										var article_id_<?= $news_data['article_id']; ?> = '<?= $news_data['article_id']; ?>';
+										var article_title_<?= $news_data['article_id']; ?> = '<?= $news_data['article_title']; ?>';
+										var article_time_<?= $news_data['article_id']; ?> = '<?= $news_data['article_time']; ?>';
+										var article_body_<?= $news_data['article_id']; ?> = document.getElementById('txt_body<?= $news_data['article_id']; ?>').textContent;
+
+										function pushData<?= $news_data['article_id']; ?>() {
+											showData(article_id_<?= $news_data['article_id']; ?>, article_title_<?= $news_data['article_id']; ?>, article_time_<?= $news_data['article_id']; ?>, article_body_<?= $news_data['article_id']; ?>)
+
+											articleId = article_id_<?= $news_data['article_id']; ?>;
+										}
+									</script>
 									<div class="ms-auto text-end">
 										<a type="submit" class="btn btn-link text-success text-gradient px-3 mb-0" href="">
 											<i class="material-icons text-sm me-2">visibility</i>show
@@ -155,7 +169,7 @@
 										<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?= base_url('article/deletearticle/' . $news_data['article_id']) ?>">
 											<i class="material-icons text-sm me-2">delete</i>Delete
 										</a>
-										<a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#frm_edit_article" data-bs-whatever="@mdo" onclick="showData('<?= $news_data['article_id']; ?>', '<?= $news_data['article_title']; ?>', '<?= $news_data['article_time']; ?>', '<?= $news_data['article_body']; ?>')">
+										<a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#frm_edit_article" data-bs-whatever="@mdo" onclick="pushData<?= $news_data['article_id']; ?>()">
 											<i class="material-icons text-sm me-2">edit</i>Edit
 										</a>
 									</div>
