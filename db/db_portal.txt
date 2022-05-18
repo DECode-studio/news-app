@@ -1,0 +1,5 @@
+Server          : db4free.net
+Database        : db_portal
+Nama pengguna   : braday
+Password        : kuplay123
+Email           : kkndesaciparage@gmail.com

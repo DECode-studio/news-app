@@ -99,7 +99,7 @@
                                                 <a type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?= base_url('curiculum/deletecuriculum/' . $curiculum_data['curiculum_id']) ?>">
                                                     <i class="material-icons text-sm me-2">delete</i>Delete
                                                 </a>
-                                                <a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#frm_update_curiculum" data-bs-whatever="@mdo" onclick="showData('<?= $curiculum_data['curiculum_id']; ?>', '<?= $curiculum_data['curiculum_name']; ?>', '<?= $curiculum_data['curiculum_sks']; ?>')">
+                                                <a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#frm_update_curiculum" data-bs-whatever="@mdo" onclick="showData('<?= $curiculum_data['curiculum_id']; ?>', '<?= $curiculum_data['curiculum_name']; ?>', '<?= $curiculum_data['curiculum_sks']; ?>', '<?= $curiculum_data['curiculum_program_study']; ?>')">
                                                     <i class="material-icons text-sm me-2">edit</i>Edit
                                                 </a>
                                             </div>
@@ -209,10 +209,12 @@
     var txt_edit_id = document.getElementById('txt_edit_id')
     var txt_edit_name = document.getElementById('txt_edit_name')
     var txt_edit_sks = document.getElementById('txt_edit_sks')
+    var cb_edit_program_study = document.getElementById('cb_edit_program_study')
 
-    function showData(curiculumId, curiculumName, curiculumSKS) {
+    function showData(curiculumId, curiculumName, curiculumSKS, curiculumProdi) {
         txt_edit_id.value = curiculumId;
         txt_edit_name.value = curiculumName;
         txt_edit_sks.value = curiculumSKS;
+        cb_edit_program_study.value = curiculumProdi;
     }
 </script>

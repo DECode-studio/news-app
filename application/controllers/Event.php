@@ -6,6 +6,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Event extends CI_Controller
 {
+
+    public function index()
+    {
+        if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+            redirect('admin/events');
+        } else {
+            redirect('admin/login');
+        }
+    }
+
     public function addEvent()
     {
         if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {

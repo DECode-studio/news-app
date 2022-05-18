@@ -7,6 +7,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Article extends CI_Controller
 {
 
+    public function index()
+    {
+        if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+            redirect('admin/news');
+        } else {
+            redirect('admin/login');
+        }
+    }
+
     public function addArticle()
     {
         if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
@@ -49,19 +58,9 @@ class Article extends CI_Controller
                     'data_id' => $article_id
                 );
 
+                $this->load->database();
                 $this->db->insert('tbl_images', $images);
             }
-
-
-            // foreach ($image_file->result_array() as $image_data) {
-            //     $images = array(
-            //         'image_id' => $image_id,
-            //         'image_file' => file_get_contents($image_data['tmp_name']),
-            //         'data_id' => $article_id
-            //     );
-
-            //     $this->db->insert('tbl_images', $images);
-            // }
 
             redirect('admin/news');
         } else {
@@ -77,10 +76,10 @@ class Article extends CI_Controller
 
             $news = array(
                 'article_id' => $article_id,
-                'article_title' => $this->input->post('txt_title'),
+                'article_title' => $this->input->post('txt_edit_title'),
                 'article_author' => $_SESSION['user_id'],
-                'article_time' => $this->input->post('dt_time'),
-                'article_body' => $this->input->post('txt_content')
+                'article_time' => $this->input->post('dt_edit_time'),
+                'article_body' => $this->input->post('txt_edit_content')
             );
 
             $this->db->where('article_id', $article_id);

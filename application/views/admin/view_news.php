@@ -87,7 +87,7 @@
 										}
 										?>
 									</div>
-									<div class="carousel-inner">
+									<div class="carousel-inner border-radius-xl">
 										<?php
 										$count_image = 0;
 
@@ -152,10 +152,10 @@
 										<a type="submit" class="btn btn-link text-success text-gradient px-3 mb-0" href="">
 											<i class="material-icons text-sm me-2">visibility</i>show
 										</a>
-										<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;">
+										<a class="btn btn-link text-danger text-gradient px-3 mb-0" href="<?= base_url('article/deletearticle/' . $news_data['article_id']) ?>">
 											<i class="material-icons text-sm me-2">delete</i>Delete
 										</a>
-										<a class="btn btn-link text-dark px-3 mb-0" href="javascript:;">
+										<a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#frm_edit_article" data-bs-whatever="@mdo" onclick="showData('<?= $news_data['article_id']; ?>', '<?= $news_data['article_title']; ?>', '<?= $news_data['article_time']; ?>', '<?= $news_data['article_body']; ?>')">
 											<i class="material-icons text-sm me-2">edit</i>Edit
 										</a>
 									</div>
@@ -168,24 +168,25 @@
 		</div>
 	</div>
 </div>
+
 <div class="fixed-plugin">
-	<a class="fixed-plugin-button text-dark position-fixed px-3 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+	<a class="fixed-plugin-button text-dark position-fixed px-3 py-2" data-bs-toggle="modal" data-bs-target="#frm_add_article" data-bs-whatever="@mdo">
 		<i class="material-icons py-2" style="font-size: 30px;">add</i>
 	</a>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="frm_add_article" tabindex="-1" aria-labelledby="frm_add_article" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
+				<h5 class="modal-title" id="frm_add_article">Add Article</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<form role="form" method='post' action="<?= base_url('article/addarticle') ?>" enctype='multipart/form-data'>
 				<div class="modal-body">
 					<div class="mb-3">
 						<label for="fp_image" class="form-label">Article's Images</label>
-						<div class="input-group">
+						<div class="input-group input-group-outline">
 							<input type="file" id="fp_image[]" name="fp_image[]" class="file" multiple />
 						</div>
 					</div>
@@ -216,3 +217,66 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="frm_edit_article" tabindex="-1" aria-labelledby="frm_edit_article" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="frm_edit_article">Edit Article</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form role="form" method='post' action="<?= base_url('article/updatearticle') ?>" enctype='multipart/form-data'>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txt_edit_id" class="form-label">Article's ID</label>
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="txt_edit_id" name="txt_edit_id">
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="fp_edit_image" class="form-label">Article's Images</label>
+						<div class="input-group input-group-outline">
+							<input type="file" id="fp_edit_image[]" name="fp_edit_image[]" class="file" multiple />
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="txt_edit_title" class="form-label">Article's title</label>
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="txt_edit_title" name="txt_edit_title">
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="dt_edit_time" class="form-label">Time</label>
+						<div class="input-group input-group-outline">
+							<input type="datetime-local" class="form-control" id="dt_edit_time" name="dt_edit_time">
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="txt_edit_content" class="form-label">Content</label>
+						<div class="input-group input-group-outline">
+							<textarea type="text" class="form-control" id="txt_edit_content" name="txt_edit_content" rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" name="submit" class="btn btn-primary">Add</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	var txt_edit_id = document.getElementById('txt_edit_id')
+	var txt_edit_title = document.getElementById('txt_edit_title')
+	var dt_edit_time = document.getElementById('dt_edit_time')
+	var txt_edit_content = document.getElementById('txt_edit_content')
+
+	function showData(article_id, article_title, article_time, article_body) {
+		txt_edit_id.value = article_id;
+		txt_edit_title.value = article_title;
+		dt_edit_time.value = article_time;
+		txt_edit_content.value = article_body;
+	}
+</script>

@@ -6,6 +6,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Lecture extends CI_Controller
 {
+
+    public function index()
+    {
+        if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
+            redirect('admin/lectures');
+        } else {
+            redirect('admin/login');
+        }
+    }
+
     public function addLecture()
     {
         if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
