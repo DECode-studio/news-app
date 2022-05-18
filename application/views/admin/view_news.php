@@ -8,7 +8,15 @@
 					</div>
 					<div class="text-end pt-1">
 						<p class="text-sm mb-0 text-capitalize">Total Post</p>
-						<h4 class="mb-0">100 Post</h4>
+						<h4 class="mb-0"><?php
+											$count_news = 0;
+
+											foreach ($news->result_array() as $news_data) {
+												$count_news++;
+											}
+
+											echo $count_news;
+											?> Post</h4>
 					</div>
 				</div>
 				<hr class="dark horizontal my-0">
