@@ -143,9 +143,7 @@
 											<div class="row">
 												<div class="col-md-2 col-4"><b>Content</b></div>
 												<div class="col-md-1 col-1">:</div>
-												<div class="col-md-9 col-6 text-black news" id="txt_body<?= $news_data['article_id']; ?>">
-													<?= $news_data['article_body']; ?>
-												</div>
+												<div class="col-md-9 col-6 text-black news" id="txt_body<?= $news_data['article_id']; ?>"><?= $news_data['article_body']; ?></div>
 											</div>
 										</div>
 									</div>
@@ -241,7 +239,7 @@
 			</div>
 			<form role="form" method='post' action="<?= base_url('article/updatearticle') ?>" enctype='multipart/form-data'>
 				<div class="modal-body">
-					<div class="mb-3">
+					<div class="mb-3" hidden>
 						<label for="txt_edit_id" class="form-label">Article's ID</label>
 						<div class="input-group input-group-outline">
 							<input type="text" class="form-control" id="txt_edit_id" name="txt_edit_id">
@@ -274,7 +272,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="submit" name="submit" class="btn btn-primary">Add</button>
+					<button type="submit" name="submit" class="btn btn-primary">Edit</button>
 				</div>
 			</form>
 		</div>
