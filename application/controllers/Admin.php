@@ -243,15 +243,27 @@ class Admin extends CI_Controller
 			if ($_SESSION['user_category'] == "admin") {
 				$user_id = $_SESSION['user_id'];
 				$txt_search = $this->input->post('txt_search');
+				$prodi = $this->input->post('cb_program_study');
 
 				if ($txt_search == null or $txt_search == "") {
-					$data = [
-						'title' => 'Admin | Curiculum',
-						'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
-						'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
-						'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum ORDER BY curiculum_name ASC"),
-						'subject' => $this->db->query("SELECT * FROM tbl_subject")
-					];
+
+					if ($prodi == null or $prodi == "") {
+						$data = [
+							'title' => 'Admin | Curiculum',
+							'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+							'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
+							'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum ORDER BY curiculum_name ASC"),
+							'subject' => $this->db->query("SELECT * FROM tbl_subject")
+						];
+					} else {
+						$data = [
+							'title' => 'Admin | Curiculum',
+							'auth' => $this->db->query("SELECT * FROM tbl_user where user_id ='$user_id'"),
+							'lecture' => $this->db->query("SELECT * FROM tbl_lecture"),
+							'curiculum' => $this->db->query("SELECT * FROM tbl_curiculum WHERE curiculum_program_study='$prodi' ORDER BY curiculum_name ASC"),
+							'subject' => $this->db->query("SELECT * FROM tbl_subject")
+						];
+					}
 				} else {
 					$data = [
 						'title' => 'Admin | Curiculum',

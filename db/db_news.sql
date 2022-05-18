@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Bulan Mei 2022 pada 12.54
+-- Waktu pembuatan: 18 Bulan Mei 2022 pada 04.43
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.4.16
 
@@ -59,17 +59,19 @@ CREATE TABLE `tbl_comment` (
 CREATE TABLE `tbl_curiculum` (
   `curiculum_id` varchar(255) NOT NULL,
   `curiculum_name` varchar(255) DEFAULT NULL,
-  `curiculum_sks` int(255) DEFAULT NULL
+  `curiculum_sks` int(255) DEFAULT NULL,
+  `curiculum_program_study` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbl_curiculum`
 --
 
-INSERT INTO `tbl_curiculum` (`curiculum_id`, `curiculum_name`, `curiculum_sks`) VALUES
-('Curiculum.ID_001', 'Fisika Listrik dan Cahaya', 3),
-('Curiculum.ID_002', 'Kalkulus', 2),
-('Curiculum.ID_003', 'Dasar Elektronika', 3);
+INSERT INTO `tbl_curiculum` (`curiculum_id`, `curiculum_name`, `curiculum_sks`, `curiculum_program_study`) VALUES
+('Curiculum.ID_20220518.041005', 'Algoritma Pemrograman', 3, 'Manajemen'),
+('Curiculum.ID_20220518.044122', 'Dasar Elektronika', 2, 'Akuntansi'),
+('Curiculum.ID_20220518.044132', 'Kalkulus', 2, 'Akuntansi'),
+('Curiculum.ID_20220518.044139', 'Pemrograman Komunikasi Bergerak', 3, 'Manajemen');
 
 -- --------------------------------------------------------
 
@@ -83,6 +85,14 @@ CREATE TABLE `tbl_event` (
   `event_time` timestamp(6) NULL DEFAULT NULL,
   `event_detail` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_event`
+--
+
+INSERT INTO `tbl_event` (`event_id`, `event_title`, `event_time`, `event_detail`) VALUES
+('Event.ID_20220516.122739', 'UAS Jayabaya III', '2022-05-16 11:55:00.000000', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum culpa sapiente laudantium nobis esse reprehenderit vero et vel, ab commodi repellat necessitatibus dolorem dolore facilis quae minus voluptates, non amet.'),
+('Event.ID_20220516.132837', 'Diesnatalis III Jayabaya', '2022-05-20 11:28:00.000000', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. At dolorum consequatur recusandae sit ea ullam praesentium inventore a natus exercitationem? Cupiditate debitis provident voluptatem ipsam eveniet, voluptatibus corporis? Ipsam, quibusdam.');
 
 -- --------------------------------------------------------
 
@@ -115,8 +125,9 @@ CREATE TABLE `tbl_lecture` (
 --
 
 INSERT INTO `tbl_lecture` (`lecture_id`, `lecture_name`, `lecture_email`, `lecture_major`, `lecture_employed`) VALUES
-('Lecture.ID_001', 'Dr. Asu Edan', 'asu.edan@jayabaya.com', 'Ekonomi Bisnis', '2022-05-11 10:13:00.000000'),
-('Lecture.ID_20220515.112849', 'Prof. Dr. Bastard Asu Edan', 'bastard@jayabaya.ac.id', 'Ekonomi Bisnis', '2006-07-15 10:53:00.000000');
+('Lecture.ID_001', 'Dr. Kuncoro Leskmono', 'konco@jayabaya.com', 'Ekonomi Bisnis', '2022-05-23 16:19:00.000000'),
+('Lecture.ID_20220515.112849', 'Str. Prof. Dr. Nur Wahid Azhar S.T., M.T.', 'nur.wahid.azhar@gmail.com', 'Ekonomi Bisnis', '2022-11-05 16:21:00.000000'),
+('Lecture.ID_20220515.182631', 'Tormentor', 'tormentor@gmail.com', 'Ekonomi Bisnis', '2022-06-02 16:26:00.000000');
 
 -- --------------------------------------------------------
 
@@ -147,11 +158,10 @@ CREATE TABLE `tbl_subject` (
 --
 
 INSERT INTO `tbl_subject` (`subject_id`, `lecture_id`, `curiculum_id`) VALUES
-('Subject.ID_20220515.124531', 'Lecture.ID_20220515.112849', 'Curiculum.ID_001'),
-('Subject.ID_20220515.124840', 'Lecture.ID_001', 'Curiculum.ID_002'),
-('Subject.ID_20220515.124949', 'Lecture.ID_001', 'Curiculum.ID_001'),
-('Subject.ID_20220515.125102', 'Lecture.ID_20220515.112849', 'Curiculum.ID_003'),
-('Subject.ID_20220515.125117', 'Lecture.ID_20220515.112849', 'Curiculum.ID_002');
+('Subject.ID_20220515.162432', 'Lecture.ID_20220515.112849', '0'),
+('Subject.ID_20220518.044155', 'Lecture.ID_001', 'Curiculum.ID_20220518.044122'),
+('Subject.ID_20220518.044158', 'Lecture.ID_20220515.112849', '0'),
+('Subject.ID_20220518.044202', 'Lecture.ID_20220515.112849', 'Curiculum.ID_20220518.044132');
 
 -- --------------------------------------------------------
 
@@ -175,7 +185,8 @@ CREATE TABLE `tbl_user` (
 INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_email`, `user_category`, `user_status`, `user_password`) VALUES
 ('User.ID_001', 'The Tormentor', 'tormentor@gmail.com', 'admin', 'online', 'kuplay123'),
 ('User.ID_002', 'Nur Wahid Azhar', 'wahid.azhar.45@gmail.com', 'admin', 'offline', 'kuplay123'),
-('User.ID_20220515.092510', 'Kuplay Community', 'kuplay.05@gmail.com', 'user', 'offline', 'kuplay123');
+('User.ID_20220515.092510', 'Kuplay Community', 'kuplay.05@gmail.com', 'user', 'offline', 'kuplay123'),
+('User.ID_20220515.173506', 'The Mentor', 'mentor@gmail.com', 'user', 'offline', 'kuplay123');
 
 --
 -- Indexes for dumped tables

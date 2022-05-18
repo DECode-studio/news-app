@@ -16,7 +16,8 @@ class Curiculum extends CI_Controller
             $data = array(
                 'curiculum_id' => $curiculum_id,
                 'curiculum_name' => $this->input->post('txt_name'),
-                'curiculum_sks' => $this->input->post('txt_sks')
+                'curiculum_sks' => $this->input->post('txt_sks'),
+                'curiculum_program_study' => $this->input->post('cb_program_study')
             );
 
             $this->db->insert('tbl_curiculum', $data);
@@ -37,7 +38,8 @@ class Curiculum extends CI_Controller
             $data = array(
                 'curiculum_id' => $curiculum_id,
                 'curiculum_name' => $this->input->post('txt_edit_name'),
-                'curiculum_sks' => $this->input->post('txt_edit_sks')
+                'curiculum_sks' => $this->input->post('txt_edit_sks'),
+                'curiculum_program_study' => $this->input->post('cb_edit_program_study')
             );
 
             $this->db->where('curiculum_id', $curiculum_id);

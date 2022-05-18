@@ -2,19 +2,29 @@
     <div class="row mt-3">
         <div class="col-12">
             <div class="col-12 d-flex">
-                <div class="col-4" style="background-color: ">
-                    <h5>Kelas</h5>
-                    <!-- SelectMenu pakai Javascript untuk Parsing Kelas nya -->
-                    <select id="pilihKelas" class="form-select btn-outline-secondary mb-0 btn-sm d-flex align-items-center justify-content-center"  aria-label="Default select example">
-                        <option value="1">Manajemen</option>
-                        <option value="2" selected="selected">Akuntansi</option>
-                    </select>
+                <div class="col-4">
+                    <h5>Program Study</h5>
 
-                    <script>
-                        var e = document.getElementById("pilihKelas");
-                        var strUser = e.value; // 2
-                        var strUser = e.options[e.selectedIndex].text; //test2
-                    </script>
+                    <?php $segment = $this->uri->segment(2); ?>
+
+                    <form role="form" action="<?= base_url('admin/' . $segment) ?>" method="post" name="add">
+                        <div class="d-flex">
+
+                            <div class="align-self-center">
+                                <select id="cb_program_study" name="cb_program_study" class="form-select btn-outline-secondary mb-0 btn-sm d-flex align-items-center justify-content-center">
+                                    <option value="" selected>Choose Program Study</option>
+                                    <option value="manajemen">Manajemen</option>
+                                    <option value="akuntansi">Akuntansi</option>
+                                </select>
+                            </div>
+
+                            <div class="align-self-center">
+                                <button type="submit" class="btn icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl ms-3" style="width: 40px !important; height: 40px !important; padding: 0px !important; margin-bottom: 0px !important;">
+                                    <i class="material-icons opacity-10">search</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <br>
@@ -31,6 +41,7 @@
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">SKS</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-center">Program Study</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lectures</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
@@ -47,16 +58,27 @@
                                                     <i class="material-icons opacity-10">book</i>
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center ms-3">
-                                                    <h6 class="mb-0 text-sm"><?= $curiculum_data['curiculum_name']; ?></h6>
-                                                    <p class="text-xs text-secondary mb-0"><?= $curiculum_data['curiculum_id']; ?></p>
+                                                    <h6 class="mb-0 text-sm">
+                                                        <?= $curiculum_data['curiculum_name']; ?>
+                                                    </h6>
+                                                    <p class="text-xs text-secondary mb-0">
+                                                        <?= $curiculum_data['curiculum_id']; ?>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0"><?= $curiculum_data['curiculum_sks']; ?></p>
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                <?= $curiculum_data['curiculum_sks']; ?>
+                                            </p>
                                             <p class="text-xs text-secondary mb-0">SKS</p>
                                         </td>
 
+                                        <td class="align-middle">
+                                            <div class="text-secondary text-xs font-weight-bold text-center">
+                                                <?= $curiculum_data['curiculum_program_study']; ?>
+                                            </div>
+                                        </td>
                                         <td class="align-middle">
                                             <?php
                                             foreach ($lecture->result_array() as $lecture_data) {
@@ -120,6 +142,14 @@
                             <input type="number" class="form-control" id="txt_sks" name="txt_sks" max="3" min="1" value="1">
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="cb_program_study" class="form-label">Progrma Study</label>
+                        <select id="cb_program_study" name="cb_program_study" class="form-select btn-outline-secondary mb-0 btn-sm d-flex align-items-center justify-content-center">
+                            <option selected>Choose Program Study</option>
+                            <option value="Manajemen">Manajemen</option>
+                            <option value="Akuntansi">Akuntansi</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -156,6 +186,14 @@
                         <div class="input-group input-group-outline">
                             <input type="number" class="form-control" id="txt_edit_sks" name="txt_edit_sks" max="3" min="1" value="1">
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cb_edit_program_study" class="form-label">Progrma Study</label>
+                        <select id="cb_edit_program_study" name="cb_edit_program_study" class="form-select btn-outline-secondary mb-0 btn-sm d-flex align-items-center justify-content-center">
+                            <option selected>Choose Program Study</option>
+                            <option value="Manajemen">Manajemen</option>
+                            <option value="Akuntansi">Akuntansi</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
