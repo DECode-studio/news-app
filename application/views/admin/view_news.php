@@ -151,7 +151,7 @@
 											<div class="row">
 												<div class="col-md-2 col-4"><b>Content</b></div>
 												<div class="col-md-1 col-1">:</div>
-												<div class="col-md-9 col-6 text-black news" id="txt_body<?= $news_data['article_id']; ?>"><?= $news_data['article_body']; ?></div>
+												<div class="col-md-9 col-6 text-black news news-height" id="txt_body<?= $news_data['article_id']; ?>"><?= $news_data['article_body']; ?></div>
 											</div>
 										</div>
 									</div>

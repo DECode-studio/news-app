@@ -32,12 +32,15 @@
 			overflow: hidden;
 			position: relative;
 			display: inline-block;
-			margin: 0 5px 0 5px;
 			text-align: center;
 			text-decoration: none;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			color: #000;
+		}
+		.news-height{
+			max-height: 30px;
+			overflow: hidden;
 		}
 	</style>
 </head>
