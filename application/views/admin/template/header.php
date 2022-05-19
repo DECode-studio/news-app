@@ -148,7 +148,7 @@
 										</a>
 									</li>
 									<li class="mb-2">
-										<a class="dropdown-item border-radius-md" href="<?php echo base_url('admin/logout'); ?>">
+										<a class="dropdown-item border-radius-md" href="<?php echo base_url('admin/logout'); ?>?logout='1'">
 											<div class="d-flex">
 												<i class="material-icons opacity-10 m-2">logout</i>
 												<h6 class="text-sm font-weight-normal m-2">
