@@ -196,7 +196,7 @@
 </div>
 
 <div class="modal fade" id="frm_add_article" tabindex="-1" aria-labelledby="frm_add_article" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="frm_add_article">Add Article</h5>
@@ -225,7 +225,7 @@
 					<div class="mb-3">
 						<label for="txt_content" class="form-label">Content</label>
 						<div class="input-group input-group-outline">
-							<textarea type="text" class="form-control" id="txt_content" name="txt_content" rows="5"></textarea>
+							<textarea type="text" class="ckeditor" id="txt_content" name="txt_content" rows="5"></textarea>
 						</div>
 					</div>
 				</div>
@@ -239,7 +239,7 @@
 </div>
 
 <div class="modal fade" id="frm_edit_article" tabindex="-1" aria-labelledby="frm_edit_article" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="frm_edit_article">Edit Article</h5>
@@ -290,7 +290,7 @@
 					<div class="mb-3">
 						<label for="txt_edit_content" class="form-label">Content</label>
 						<div class="input-group input-group-outline">
-							<textarea type="text" class="form-control" id="txt_edit_content" name="txt_edit_content" rows="5"></textarea>
+							<textarea type="text" class="ckeditor" id="txt_edit_content" name="txt_edit_content" rows="10" cols="80"></textarea>
 						</div>
 					</div>
 				</div>

@@ -22,7 +22,24 @@
 	<link id="pagestyle" href="<?php echo base_url('public/css/material-dashboard.css'); ?>" rel="stylesheet" />
 
 	<link href="<?php echo base_url('public/css/style.css'); ?>" rel="stylesheet" />
+	<script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
+	<style>
+		.news p{
+			height: 22px;
+			width: 220px;
+			padding: 0;
+			overflow: hidden;
+			position: relative;
+			display: inline-block;
+			margin: 0 5px 0 5px;
+			text-align: center;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: #000;
+		}
+	</style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
