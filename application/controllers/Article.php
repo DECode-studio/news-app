@@ -21,7 +21,7 @@ class Article extends CI_Controller
         if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 
             $date = date('Ymd_His');
-            $article_id = "Article-ID_" . $date;
+            $article_id = "Article_ID_" . $date;
 
             $news = array(
                 'article_id' => $article_id,
