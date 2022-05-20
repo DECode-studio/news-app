@@ -25,6 +25,8 @@
 	<script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
 	<style>
+		.news {
+		}
 		.news p{
 			height: 22px;
 			width: 220px;

@@ -217,6 +217,12 @@
 						</div>
 					</div>
 					<div class="mb-3">
+						<label for="txt_category" class="form-label">Category</label>
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="txt_category" name="txt_category">
+						</div>
+					</div>
+					<div class="mb-3">
 						<label for="dt_time" class="form-label">Time</label>
 						<div class="input-group input-group-outline">
 							<input type="datetime-local" class="form-control" id="dt_time" name="dt_time">
@@ -254,6 +260,12 @@
 						<label for="txt_edit_id" class="form-label">Article's ID</label>
 						<div class="input-group input-group-outline">
 							<input type="text" class="form-control" id="txt_edit_id" name="txt_edit_id">
+						</div>
+					</div>
+					<div class="mb-3" hidden>
+						<label for="txt_edit_category" class="form-label">Category</label>
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="txt_edit_category" name="txt_edit_category">
 						</div>
 					</div>
 					<div class="mb-3">
@@ -315,4 +327,9 @@
 		dt_edit_time.value = article_time;
 		txt_edit_content.value = article_body;
 	}
+</script>
+
+<script>
+	CKEDITOR.instances['txt_edit_content'].getData();
+	// CKEDITOR.instances["txt_edit_content"].setData();
 </script>

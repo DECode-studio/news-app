@@ -26,6 +26,7 @@ class Article extends CI_Controller
             $news = array(
                 'article_id' => $article_id,
                 'article_title' => $this->input->post('txt_title'),
+                'article_category' => $this->input->post('txt_category'),
                 'article_author' => $_SESSION['user_id'],
                 'article_time' => $this->input->post('dt_time'),
                 'article_body' => $this->input->post('txt_content')
@@ -77,6 +78,7 @@ class Article extends CI_Controller
             $news = array(
                 'article_id' => $article_id,
                 'article_title' => $this->input->post('txt_edit_title'),
+                'article_category' => $this->input->post('txt_edit_category'),
                 'article_author' => $_SESSION['user_id'],
                 'article_time' => $this->input->post('dt_edit_time'),
                 'article_body' => $this->input->post('txt_edit_content')
