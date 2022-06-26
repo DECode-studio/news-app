@@ -22,7 +22,29 @@
 	<link id="pagestyle" href="<?php echo base_url('public/css/material-dashboard.css'); ?>" rel="stylesheet" />
 
 	<link href="<?php echo base_url('public/css/style.css'); ?>" rel="stylesheet" />
+	<script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
+	<style>
+		.news {
+		}
+		.news p{
+			height: 22px;
+			width: 220px;
+			padding: 0;
+			overflow: hidden;
+			position: relative;
+			display: inline-block;
+			text-align: center;
+			text-decoration: none;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			color: #000;
+		}
+		.news-height{
+			max-height: 30px;
+			overflow: hidden;
+		}
+	</style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -148,7 +170,7 @@
 										</a>
 									</li>
 									<li class="mb-2">
-										<a class="dropdown-item border-radius-md" href="<?php echo base_url('admin/logout'); ?>">
+										<a class="dropdown-item border-radius-md" href="<?php echo base_url('admin/logout'); ?>?logout='1'">
 											<div class="d-flex">
 												<i class="material-icons opacity-10 m-2">logout</i>
 												<h6 class="text-sm font-weight-normal m-2">

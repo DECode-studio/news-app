@@ -36,10 +36,10 @@ class Admin extends CI_Controller
 
 	public function logout()
 	{
-		$user_id = $_SESSION['user_id'];
-		$this->offline($user_id);
-
-		if (session_destroy()) {
+		if (isset($_GET['logout'])) {
+			session_destroy();
+			$user_id = $_SESSION['user_id'];
+			$this->offline($user_id);
 			redirect('admin/login');
 		}
 	}
@@ -47,8 +47,8 @@ class Admin extends CI_Controller
 	public function login()
 	{
 		$alert = '';
-
 		$counter = 1;
+		$errors   = array(); 
 
 		if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 			// $this->dashboard();
@@ -57,8 +57,7 @@ class Admin extends CI_Controller
 			$user_email = $this->input->post('txt_email');
 			$user_password = $this->input->post('txt_password');
 
-			$auth = $this->db->query("SELECT * FROM tbl_user where user_email='$user_email' and user_password='$user_password'");
-
+			$auth = $this->db->query("SELECT * FROM tbl_user where user_email='$user_email' and user_password='$user_password' LIMIT 1");
 			foreach ($auth->result_array() as $user_data) {
 				$_SESSION['user_id'] = $user_data['user_id'];
 				$_SESSION['user_email'] = $user_email;
@@ -66,25 +65,37 @@ class Admin extends CI_Controller
 				$_SESSION['status'] = "login";
 
 				$this->online($user_data['user_id']);
-
-				// $this->dashboard();
-				return redirect('admin/dashboard');
 			}
 
-			$user_data = $auth->result_array();
+			$counter++;
 
-			if ($user_data == null) {
-				$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
+			if (empty($user_email)) {
+				array_push($errors, "Email is required");
+			}
+			if (empty($user_password)) {
+				array_push($errors, "Password is required");
 			}
 
-			$counter = $user_data;
-
-			// if (empty($user_email) && empty($user_password)) {
+			if (count($errors) == 0) {
+				if ($auth->num_rows() == 1) {
+					return redirect('admin/dashboard');
+				} else {
+					?>
+					<script>
+					alert("Pastikan Email dan password yang anda masukan benar!");
+					</script>
+					<?php
+				}
+			}
+			// if ($auth->num_rows() == 0) {
 			// 	$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
+			// 	$data = [
+			// 		'title' => 'Sign In | Portal',
+			// 		'alert' => $alert,
+			// 		'counter' => $counter
+			// 	];
 			// }
-
-			// $alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
-
+			
 			$data = [
 				'title' => 'Sign In | Portal',
 				'alert' => $alert,
@@ -92,6 +103,13 @@ class Admin extends CI_Controller
 			];
 
 			return $this->load->view('login/login', $data);
+			// if (empty($user_email) && empty($user_password)) {
+			// 	$alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
+			// }
+
+			// $alert = 'Email atau Password masih salah !\nSilahkan isi Email atau Password dengan benar';
+
+			
 		}
 	}
 

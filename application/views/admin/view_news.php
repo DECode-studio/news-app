@@ -151,7 +151,7 @@
 											<div class="row">
 												<div class="col-md-2 col-4"><b>Content</b></div>
 												<div class="col-md-1 col-1">:</div>
-												<div class="col-md-9 col-6 text-black news" id="txt_body<?= $news_data['article_id']; ?>"><?= $news_data['article_body']; ?></div>
+												<div class="col-md-9 col-6 text-black news news-height" id="txt_body<?= $news_data['article_id']; ?>"><?= $news_data['article_body']; ?></div>
 											</div>
 										</div>
 									</div>
@@ -196,7 +196,7 @@
 </div>
 
 <div class="modal fade" id="frm_add_article" tabindex="-1" aria-labelledby="frm_add_article" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="frm_add_article">Add Article</h5>
@@ -217,6 +217,12 @@
 						</div>
 					</div>
 					<div class="mb-3">
+						<label for="txt_category" class="form-label">Category</label>
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="txt_category" name="txt_category">
+						</div>
+					</div>
+					<div class="mb-3">
 						<label for="dt_time" class="form-label">Time</label>
 						<div class="input-group input-group-outline">
 							<input type="datetime-local" class="form-control" id="dt_time" name="dt_time">
@@ -225,7 +231,7 @@
 					<div class="mb-3">
 						<label for="txt_content" class="form-label">Content</label>
 						<div class="input-group input-group-outline">
-							<textarea type="text" class="form-control" id="txt_content" name="txt_content" rows="5"></textarea>
+							<textarea type="text" class="ckeditor" id="txt_content" name="txt_content" rows="5"></textarea>
 						</div>
 					</div>
 				</div>
@@ -239,7 +245,7 @@
 </div>
 
 <div class="modal fade" id="frm_edit_article" tabindex="-1" aria-labelledby="frm_edit_article" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="frm_edit_article">Edit Article</h5>
@@ -254,6 +260,12 @@
 						<label for="txt_edit_id" class="form-label">Article's ID</label>
 						<div class="input-group input-group-outline">
 							<input type="text" class="form-control" id="txt_edit_id" name="txt_edit_id">
+						</div>
+					</div>
+					<div class="mb-3" hidden>
+						<label for="txt_edit_category" class="form-label">Category</label>
+						<div class="input-group input-group-outline">
+							<input type="text" class="form-control" id="txt_edit_category" name="txt_edit_category">
 						</div>
 					</div>
 					<div class="mb-3">
@@ -290,7 +302,7 @@
 					<div class="mb-3">
 						<label for="txt_edit_content" class="form-label">Content</label>
 						<div class="input-group input-group-outline">
-							<textarea type="text" class="form-control" id="txt_edit_content" name="txt_edit_content" rows="5"></textarea>
+							<textarea type="text" class="ckeditor" id="txt_edit_content" name="txt_edit_content" rows="10" cols="80"></textarea>
 						</div>
 					</div>
 				</div>
@@ -315,4 +327,9 @@
 		dt_edit_time.value = article_time;
 		txt_edit_content.value = article_body;
 	}
+</script>
+
+<script>
+	CKEDITOR.instances['txt_edit_content'].getData();
+	// CKEDITOR.instances["txt_edit_content"].setData();
 </script>
